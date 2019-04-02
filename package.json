@@ -1,0 +1,32 @@
+{
+  "name": "eslint-plugin-jest-formatting",
+  "version": "0.0.0",
+  "description": "Formatting rules for test written with jest",
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin",
+    "jest",
+    "format"
+  ],
+  "author": "Dan Green-Leipciger",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dangreenisrael/eslint-plugin-jest-formatting"
+  },
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "requireindex": "~1.1.0"
+  },
+  "devDependencies": {
+    "eslint": "~5.16.0",
+    "jest": "^24.5.0"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "license": "ISC"
+}
