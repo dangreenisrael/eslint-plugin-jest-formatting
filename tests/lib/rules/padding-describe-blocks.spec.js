@@ -25,6 +25,7 @@ describe('foo',()=>{});
 
 foo();
 bar();
+const thing="ok";
 
 describe('bar',()=>{});
 
@@ -37,6 +38,7 @@ const invalidTopLevel = `
 describe('foo',()=>{});
 foo();
 bar();
+const thing="ok";
 describe('bar',()=>{});
 describe('baz',()=>{});
 baz();
