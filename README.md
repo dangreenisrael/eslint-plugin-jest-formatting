@@ -38,7 +38,8 @@ Then configure the rules you want to use under the rules section.
 ```json
 {
     "rules": {
-        "jest-formatting/padding-test-blocks": 2
+        "jest-formatting/padding-test-blocks": 2,
+        "jest-formatting/padding-describe-blocks": 2,
     }
 }
 ```
@@ -47,6 +48,7 @@ Then configure the rules you want to use under the rules section.
 
 * [padding-test-blocks](docs/rules/padding-test-blocks.md)
 
+* [padding-describe-blocks](docs/rules/padding-describe-blocks.md)
 
 
 
