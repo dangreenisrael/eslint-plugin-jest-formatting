@@ -43,9 +43,9 @@ Then configure the rules you want to use under the rules section.
 }
 ```
 
-## Supported Rules
+## Rule Documentation
 
-* padding-test-blocks
+* [padding-test-blocks](docs/rules/padding-test-blocks.md)
 
 
 
