@@ -67,7 +67,7 @@ const padAfter = (context, node, afterMessage) => {
   }
 };
 
-const padBothSides = (
+export const padBothSides = (
   context,
   node,
   qualifier,
@@ -76,8 +76,4 @@ const padBothSides = (
 ) => {
   padBefore(context, node, qualifier, beforeMessage);
   padAfter(context, node, afterMessage);
-};
-
-module.exports = {
-  padBothSides
 };

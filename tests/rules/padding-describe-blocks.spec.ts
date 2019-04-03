@@ -8,8 +8,8 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-const rule = require("../../../lib/rules/padding-describe-blocks");
-const RuleTester = require("eslint").RuleTester;
+import { RuleTester } from "eslint";
+const rule = require("../../src/rules/padding-describe-blocks");
 
 RuleTester.setDefaultConfig({
   parserOptions: {
