@@ -10,6 +10,23 @@ defaults: &defaults
     - image: circleci/node:10.15.3
 
 jobs:
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - run:
+          name: Build
+          command: yarn build
+      - persist_to_workspace:
+          root: ~/repo
+          paths: .
+
   test:
     <<: *defaults
     steps:
@@ -21,19 +38,15 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: npm install
+      - run: yarn install
       - run:
           name: Run tests
-          command: npm test
+          command: yarn test
 
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-
-      - persist_to_workspace:
-          root: ~/repo
-          paths: .
   deploy:
     <<: *defaults
     steps:
@@ -41,16 +54,22 @@ jobs:
           at: ~/repo
       - run:
           name: Authenticate with registry
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
+          command: echo "//registry.yarnjs.org/:_authToken=$yarn_TOKEN" > ~/repo/.yarnrc
       - run:
           name: Publish package
-          command: npm publish
+          command: yarn publish
 
 workflows:
   version: 2
   test-deploy:
     jobs:
+      - build:
+          filters:
+            tags:
+              only: /^v.*/
       - test:
+          requires:
+            - build
           filters:
             tags:
               only: /^v.*/
