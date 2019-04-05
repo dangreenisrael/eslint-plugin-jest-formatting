@@ -80,7 +80,11 @@ ruleTester.run("padding-between-test-blocks", rule, {
       output: validIts,
       errors: [
         {
-          message: rule.message,
+          message: rule.beforeMessage,
+          type: "ExpressionStatement"
+        },
+        {
+          message: rule.afterMessage,
           type: "ExpressionStatement"
         }
       ]
@@ -90,7 +94,7 @@ ruleTester.run("padding-between-test-blocks", rule, {
       output: validTests,
       errors: [
         {
-          message: rule.message,
+          message: rule.afterMessage,
           type: "ExpressionStatement"
         }
       ]
@@ -100,7 +104,7 @@ ruleTester.run("padding-between-test-blocks", rule, {
       output: validNestedDescribes,
       errors: [
         {
-          message: rule.message,
+          message: rule.afterMessage,
           type: "ExpressionStatement"
         }
       ]
