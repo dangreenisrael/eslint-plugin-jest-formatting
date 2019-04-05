@@ -22,47 +22,52 @@ RuleTester.setDefaultConfig({
 //------------------------------------------------------------------------------
 
 const invalidIts = `
-describe('foo',()=>{
-  it('foo', ()=>{})
-  it('bar', ()=>{})
+const foo = 'bar';
+const bar = 'baz';
+it('foo', ()=>{
+
+})
+it('bar', ()=>{
+
 })
 `;
 
 const validIts = `
-describe('foo',()=>{
-  it('foo', ()=>{})
+const foo = 'bar';
+const bar = 'baz';
 
-  it('bar', ()=>{})
+it('foo', ()=>{
+
+})
+
+it('bar', ()=>{
+
 })
 `;
 
 const invalidTests = `
-describe('foo',()=>{
-  test('foo', ()=>{})
-  test('bar', ()=>{})
-})
+test('foo', ()=>{})
+test('bar', ()=>{})
 `;
 
 const validTests = `
-describe('foo',()=>{
-  test('foo', ()=>{})
+test('foo', ()=>{})
 
-  test('bar', ()=>{})
-})
+test('bar', ()=>{})
 `;
 
 const invalidNestedDescribes = `
-describe('foo',()=>{
-  test('foo', ()=>{})
-  describe('bar', ()=>{})
+test('foo', ()=>{})
+describe('bar', ()=>{
+
 })
 `;
 
 const validNestedDescribes = `
-describe('foo',()=>{
-  test('foo', ()=>{})
+test('foo', ()=>{})
 
-  describe('bar', ()=>{})
+describe('bar', ()=>{
+
 })
 `;
 

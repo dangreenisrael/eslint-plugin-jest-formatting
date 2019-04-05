@@ -50,7 +50,9 @@ describe('foo',()=>{});
 foo();
 bar();
 
-describe('bar',()=>{});
+describe('bar',()=>{
+
+});
 
 describe('baz',()=>{});
 
@@ -61,7 +63,9 @@ const invalidBlockLevel = `{
 describe('foo',()=>{});
 foo();
 bar();
-describe('bar',()=>{});
+describe('bar',()=>{
+
+});
 describe('baz',()=>{});
 baz();
 }`;
