@@ -1,5 +1,7 @@
 [![CircleCI](https://circleci.com/gh/dangreenisrael/eslint-plugin-jest-formatting/tree/master.svg?style=svg)](https://circleci.com/gh/dangreenisrael/eslint-plugin-jest-formatting/tree/master)
 
+# This is not stable yet, API will likely change before v1.0.0
+
 # eslint-plugin-jest-formatting
 
 Formatting rules for tests written in jest
@@ -38,8 +40,8 @@ Then configure the rules you want to use under the rules section.
 ```json
 {
     "rules": {
-        "jest-formatting/padding-test-blocks": 2,
-        "jest-formatting/padding-describe-blocks": 2,
+        "jest-formatting/padding-before-test-blocks": 2,
+        "jest-formatting/padding-before-describe-blocks": 2,
     }
 }
 ```
