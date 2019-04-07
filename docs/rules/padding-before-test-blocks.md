@@ -1,10 +1,8 @@
 # padding-test-blocks
 
-Enforces a single like of padding between test blocks with a describe (padding-test-blocks)
-
 ## Rule Details
 
-This rule aims to improve test readability by enforcing a single space between test blocks within a describe.
+This rule enforces at least one line of padding before test blocks with a describe (newling or comment).
 
 Examples of **incorrect** code for this rule:
 

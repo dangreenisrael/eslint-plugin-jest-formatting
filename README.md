@@ -48,9 +48,9 @@ Then configure the rules you want to use under the rules section.
 
 ## Rule Documentation
 
-* [padding-test-blocks](docs/rules/padding-test-blocks.md)
+* [padding-before-test-blocks](docs/rules/padding-before-test-blocks.md)
 
-* [padding-describe-blocks](docs/rules/padding-describe-blocks.md)
+* [padding-before-describe-blocks](docs/rules/padding-before-describe-blocks.md)
 
 
 

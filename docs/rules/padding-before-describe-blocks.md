@@ -2,7 +2,7 @@
 
 ## Rule Details
 
-This rule enforces single line padding around describe blocks 
+This rule enforces at least one line of padding before describe blocks (newline or comment).
 
 Examples of **incorrect** code for this rule:
 

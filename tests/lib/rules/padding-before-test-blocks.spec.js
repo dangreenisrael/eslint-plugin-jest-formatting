@@ -46,22 +46,26 @@ it('bar', ()=>{
 `;
 
 const invalidTests = `
-test('foo', ()=>{
+describe('foo', ()=>{
+  test('foo', ()=>{
 
-})
-test('bar', ()=>{
+  })
+  test('bar', ()=>{
 
-})
+  })
+});
 `;
 
 const validTests = `
-test('foo', ()=>{
+describe('foo', ()=>{
+  test('foo', ()=>{
 
-})
+  })
 
-test('bar', ()=>{
+  test('bar', ()=>{
 
-})
+  })
+});
 `;
 
 const validPaddedWithComments = `
