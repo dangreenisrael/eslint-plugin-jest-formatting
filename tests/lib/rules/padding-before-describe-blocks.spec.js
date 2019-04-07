@@ -8,7 +8,7 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-const rule = require("../../../lib/rules/padding-describe-blocks");
+const rule = require("../../../lib/rules/padding-before-describe-blocks");
 const RuleTester = require("eslint").RuleTester;
 
 RuleTester.setDefaultConfig({
@@ -21,53 +21,53 @@ RuleTester.setDefaultConfig({
 //------------------------------------------------------------------------------
 
 const validTopLevel = `
-describe('foo',()=>{});
-
 foo();
 bar();
 const thing="ok";
 
-describe('bar',()=>{});
+describe('bar',()=>{
 
-describe('baz',()=>{});
+});
 
-baz();
+describe('baz',()=>{
+
+});
 `;
 
 const invalidTopLevel = `
-describe('foo',()=>{});
 foo();
 bar();
 const thing="ok";
-describe('bar',()=>{});
-describe('baz',()=>{});
-baz();
+describe('bar',()=>{
+
+});
+describe('baz',()=>{
+
+});
 `;
 
 const validBlockLevel = `{
-describe('foo',()=>{});
+  foo();
+  bar();
 
-foo();
-bar();
+  describe('bar',()=>{
 
-describe('bar',()=>{
+  });
 
-});
+  describe('baz',()=>{
 
-describe('baz',()=>{});
-
-baz();
+  });
 }`;
 
 const invalidBlockLevel = `{
-describe('foo',()=>{});
-foo();
-bar();
-describe('bar',()=>{
+  foo();
+  bar();
+  describe('bar',()=>{
 
-});
-describe('baz',()=>{});
-baz();
+  });
+  describe('baz',()=>{
+
+  });
 }`;
 
 const ruleTester = new RuleTester();
@@ -79,19 +79,12 @@ ruleTester.run("padding-describe-blocks", rule, {
       output: validTopLevel,
       errors: [
         {
-          message: rule.afterMessage,
-          type: "ExpressionStatement"
-        },
-        {
           message: rule.beforeMessage,
           type: "ExpressionStatement"
         },
+
         {
-          message: rule.afterMessage,
-          type: "ExpressionStatement"
-        },
-        {
-          message: rule.afterMessage,
+          message: rule.beforeMessage,
           type: "ExpressionStatement"
         }
       ]
@@ -101,19 +94,12 @@ ruleTester.run("padding-describe-blocks", rule, {
       output: validBlockLevel,
       errors: [
         {
-          message: rule.afterMessage,
-          type: "ExpressionStatement"
-        },
-        {
           message: rule.beforeMessage,
           type: "ExpressionStatement"
         },
+
         {
-          message: rule.afterMessage,
-          type: "ExpressionStatement"
-        },
-        {
-          message: rule.afterMessage,
+          message: rule.beforeMessage,
           type: "ExpressionStatement"
         }
       ]
