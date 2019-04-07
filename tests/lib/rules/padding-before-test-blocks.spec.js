@@ -8,7 +8,7 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-const rule = require("../../../lib/rules/padding-test-blocks");
+const rule = require("../../../lib/rules/padding-before-test-blocks");
 const RuleTester = require("eslint").RuleTester;
 
 RuleTester.setDefaultConfig({
@@ -46,34 +46,40 @@ it('bar', ()=>{
 `;
 
 const invalidTests = `
-test('foo', ()=>{})
-test('bar', ()=>{})
-`;
+test('foo', ()=>{
 
-const validTests = `
-test('foo', ()=>{})
-
-test('bar', ()=>{})
-`;
-
-const invalidNestedDescribes = `
-test('foo', ()=>{})
-describe('bar', ()=>{
+})
+test('bar', ()=>{
 
 })
 `;
 
-const validNestedDescribes = `
-test('foo', ()=>{})
+const validTests = `
+test('foo', ()=>{
 
-describe('bar', ()=>{
+})
+
+test('bar', ()=>{
+
+})
+`;
+
+const validPaddedWithComments = `
+test('foo', ()=>{
+
+})
+/*
+Some comment
+*/
+//Baz
+it('bar', ()=>{
 
 })
 `;
 
 const ruleTester = new RuleTester();
 ruleTester.run("padding-between-test-blocks", rule, {
-  valid: [validIts, validTests, validNestedDescribes],
+  valid: [validIts, validTests, validPaddedWithComments],
   invalid: [
     {
       code: invalidIts,
@@ -84,7 +90,7 @@ ruleTester.run("padding-between-test-blocks", rule, {
           type: "ExpressionStatement"
         },
         {
-          message: rule.afterMessage,
+          message: rule.beforeMessage,
           type: "ExpressionStatement"
         }
       ]
@@ -94,17 +100,7 @@ ruleTester.run("padding-between-test-blocks", rule, {
       output: validTests,
       errors: [
         {
-          message: rule.afterMessage,
-          type: "ExpressionStatement"
-        }
-      ]
-    },
-    {
-      code: invalidNestedDescribes,
-      output: validNestedDescribes,
-      errors: [
-        {
-          message: rule.afterMessage,
+          message: rule.beforeMessage,
           type: "ExpressionStatement"
         }
       ]
