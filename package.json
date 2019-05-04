@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-jest-formatting",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Formatting rules for test written with jest",
   "keywords": [
     "eslint",
@@ -17,9 +17,6 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "jest"
-  },
-  "dependencies": {
-    "requireindex": "~1.2.0"
   },
   "devDependencies": {
     "eslint": "5.16.0",

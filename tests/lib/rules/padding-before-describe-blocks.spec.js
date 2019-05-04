@@ -8,7 +8,7 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-const rule = require("../../../lib/rules/padding-before-describe-blocks");
+const rule = require("../../../lib").rules['padding-before-describe-blocks'];
 const RuleTester = require("eslint").RuleTester;
 
 RuleTester.setDefaultConfig({
