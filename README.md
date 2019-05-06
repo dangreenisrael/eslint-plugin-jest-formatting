@@ -3,7 +3,7 @@
 
 # eslint-plugin-jest-formatting
 
-Formatting rules for tests written in jest
+This project aims to provide formatting rules (auto-fixable where possible) to ensure consistency and readability in jest test suites.
 
 Like this plugin? [Say thanks with a ⭐️](https://github.com/dangreenisrael/eslint-plugin-jest-formatting/stargazers)
 
