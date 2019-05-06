@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/dangreenisrael/eslint-plugin-jest-formatting/tree/master.svg?style=svg)](https://circleci.com/gh/dangreenisrael/eslint-plugin-jest-formatting/tree/master) [![star this repo](http://githubbadges.com/star.svg?user=dangreenisrael&repo=eslint-plugin-jest-formatting&style=flat)](https://github.com/dangreenisrael/eslint-plugin-jest-formatting/stargazers)
+[![CircleCI](https://circleci.com/gh/dangreenisrael/eslint-plugin-jest-formatting/tree/master.svg?style=svg)](https://circleci.com/gh/dangreenisrael/eslint-plugin-jest-formatting/tree/master)
 
 
 # eslint-plugin-jest-formatting
@@ -54,9 +54,3 @@ Then configure the rules you want to use under the rules section.
 * [padding-before-test-blocks](docs/rules/padding-before-test-blocks.md)
 
 * [padding-before-describe-blocks](docs/rules/padding-before-describe-blocks.md)
-
-
-
-
-<!-- Github button script -->
-<script async defer src="https://buttons.github.io/buttons.js"></script>
