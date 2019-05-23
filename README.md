@@ -1,5 +1,5 @@
 [![CircleCI](https://circleci.com/gh/dangreenisrael/eslint-plugin-jest-formatting/tree/master.svg?style=svg)](https://circleci.com/gh/dangreenisrael/eslint-plugin-jest-formatting/tree/master)
-
+![npm monthly downloads](https://img.shields.io/npm/dm/eslint-plugin-jest-formatting.svg)
 
 # eslint-plugin-jest-formatting
 
