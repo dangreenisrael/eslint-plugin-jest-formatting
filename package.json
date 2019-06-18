@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "eslint": "5.16.0",
-    "jest": "24.7.1"
+    "jest": "24.8.0"
   },
   "engines": {
     "node": ">=8.0.0"
