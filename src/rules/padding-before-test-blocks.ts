@@ -1,28 +1,29 @@
 /**
- * @fileoverview Enforces single line padding around describe blocks
- * @author Dan Green-Leipciger
+ * @fileoverview Enforces a single like of padding between test blocks with a describe
+ * @author Dan
  */
 "use strict";
 
-const { padBefore } = require("../utils");
+import { padBefore } from "../utils";
 //------------------------------------------------------------------------------
 // Rule Definition
 //------------------------------------------------------------------------------
 
 const beforeMessage =
-  "You need a newline or comment before a describe block when it comes after another expression";
+  "You need a newline or comment before an `it` or `test` block when it comes after another expression";
 
-const isDescribe = node =>
-  node.expression &&
-  node.expression.callee &&
-  node.expression.callee.name === "describe";
+const expressionName = node =>
+  node.expression && node.expression.callee && node.expression.callee.name;
+const isTestBlock = node =>
+  expressionName(node) === "test" || expressionName(node) === "it";
 
-module.exports = {
+export default {
   meta: {
     docs: {
-      description: "Enforces at least a line of padding before describe blocks",
-      category: "Fill me in",
-      recommended: false
+      description:
+        "Enforces at least a line of padding before test blocks within a describe",
+      category: "Formatting",
+      recommended: true
     },
     fixable: "whitespace", // or "code" or "whitespace"
     schema: [
@@ -32,13 +33,13 @@ module.exports = {
   beforeMessage,
   create(context) {
     const filePath = context && context.getFilename();
-    const isTest =
+    const isTestFile =
       filePath.includes("test") ||
       filePath.includes("spec") ||
       filePath.includes("<input>");
     return {
       ExpressionStatement(node) {
-        if (!isTest || !isDescribe(node)) {
+        if (!isTestFile || !isTestBlock(node)) {
           return;
         }
         padBefore({ context, node, beforeMessage });

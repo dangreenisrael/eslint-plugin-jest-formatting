@@ -26,7 +26,7 @@ const getEndLine = node => node && node.loc.end.line;
 const shouldFixGap = (bottomNode, topNode) =>
   getStartLine(topNode) - getEndLine(bottomNode) < 2;
 
-const padBefore = ({ context, node, beforeMessage }) => {
+export const padBefore = ({ context, node, beforeMessage }) => {
   const leftSibling = getLeftSibling(node);
   if (leftSibling && shouldFixGap(leftSibling, node)) {
     setPaddingBetweenNodes({
@@ -36,8 +36,4 @@ const padBefore = ({ context, node, beforeMessage }) => {
       message: beforeMessage
     });
   }
-};
-
-module.exports = {
-  padBefore
 };
