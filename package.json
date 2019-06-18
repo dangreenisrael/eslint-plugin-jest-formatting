@@ -23,7 +23,7 @@
     "jest": "24.8.0"
   },
   "engines": {
-    "node": "8.9.0"
+    "node": "8.16.0"
   },
   "license": "MIT"
 }
