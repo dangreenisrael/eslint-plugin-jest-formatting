@@ -1,7 +1,7 @@
 {
   "name": "eslint-plugin-jest-formatting",
   "version": "0.0.9",
-  "description": "Formatting rules for test written with jest",
+  "description": "Formatting rules for jest tests",
   "keywords": [
     "eslint",
     "eslintplugin",
@@ -23,22 +23,22 @@
     "build": "tsc",
     "test": "yarn build && jest"
   },
-  "dependencies": {
-    "prettier": "^1.18.2"
-  },
   "devDependencies": {
     "@types/eslint": "4.16.6",
     "@types/jest": "24.0.11",
     "@types/node": "8.10.0",
-    "@typescript-eslint/parser": "^1.10.2",
+    "@typescript-eslint/parser": "1.10.2",
     "eslint": "5.16.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-config-prettier": "^5.0.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-config-airbnb-base": "13.1.0",
+    "eslint-config-prettier": "5.0.0",
+    "eslint-plugin-import": "2.14.0",
+    "eslint-plugin-jest": "22.7.0",
+    "eslint-plugin-jest-formatting": "^0.0.9",
+    "eslint-plugin-prettier": "3.1.0",
     "jest": "24.8.0",
-    "ts-jest": "24.0.1",
-    "typescript": "3.4.1"
+    "prettier": "1.18.2",
+    "typescript": "3.4.1",
+    "ts-jest": "24.0.2"
   },
   "engines": {
     "node": "8.10.0"
