@@ -18,7 +18,7 @@
   "module": "src/index.ts",
   "scripts": {
     "pretty": "yarn prettier '**/*.*'",
-    "lint": "yarn pretty --check && yarn eslint",
+    "lint": "yarn pretty --check && yarn eslint .",
     "format": "yarn build && yarn pretty --write && yarn eslint --fix .",
     "build": "tsc",
     "test": "yarn build && jest"

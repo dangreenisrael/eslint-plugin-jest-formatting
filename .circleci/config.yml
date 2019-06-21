@@ -22,10 +22,13 @@ jobs:
             - v1-dependencies-
 
       - run: yarn
+
       - run:
           name: Run tests
           command: yarn test
 
+      - run: yarn lint
+      
       - save_cache:
           paths:
             - node_modules
