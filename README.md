@@ -7,8 +7,6 @@ This project aims to provide formatting rules (auto-fixable where possible) to e
 
 Like this plugin? [Say thanks with a ⭐️](https://github.com/dangreenisrael/eslint-plugin-jest-formatting/stargazers)
 
-
-
 ## Installation
 
 You'll first need to install [ESLint](http://eslint.org):
@@ -31,26 +29,23 @@ Add `jest-formatting` to the plugins section of your `.eslintrc` configuration f
 
 ```json
 {
-    "plugins": [
-        "jest-formatting"
-    ]
+  "plugins": ["jest-formatting"]
 }
 ```
-
 
 Then configure the rules you want to use under the rules section.
 
 ```json
 {
-    "rules": {
-        "jest-formatting/padding-before-test-blocks": 2,
-        "jest-formatting/padding-before-describe-blocks": 2,
-    }
+  "rules": {
+    "jest-formatting/padding-before-test-blocks": 2,
+    "jest-formatting/padding-before-describe-blocks": 2
+  }
 }
 ```
 
 ## Rule Documentation
 
-* [padding-before-test-blocks](docs/rules/padding-before-test-blocks.md)
+- [padding-before-test-blocks](docs/rules/padding-before-test-blocks.md)
 
-* [padding-before-describe-blocks](docs/rules/padding-before-describe-blocks.md)
+- [padding-before-describe-blocks](docs/rules/padding-before-describe-blocks.md)

@@ -1,20 +1,21 @@
 ---
 name: Rule Request
 about: Request a new formatting rule
-title: "[Rule]"
+title: '[Rule]'
 labels: Rule Request
 assignees: dangreenisrael
-
 ---
 
-*Explanation of the rule*
+_Explanation of the rule_
 
-*Valid code example*
+_Valid code example_
+
 ```JavaScript
 
 ```
 
-*Invalid code example*
+_Invalid code example_
+
 ```JavaScript
 
 ```

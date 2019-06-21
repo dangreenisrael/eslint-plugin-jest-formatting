@@ -7,52 +7,51 @@ This rule enforces at least one line of padding before test blocks with a descri
 Examples of **incorrect** code for this rule:
 
 ```js
-describe('foo',()=>{
-  test('foo', ()=>{})
-  test('bar', ()=>{})
-})
+describe('foo', () => {
+  test('foo', () => {});
+  test('bar', () => {});
+});
 ```
 
 ```js
-describe('foo',()=>{
-  it('foo', ()=>{})
-  it('bar', ()=>{})
-})
+describe('foo', () => {
+  it('foo', () => {});
+  it('bar', () => {});
+});
 ```
 
 ```js
-describe('foo',()=>{
-  it('foo', ()=>{})
+describe('foo', () => {
+  it('foo', () => {});
 
-
-  it('bar', ()=>{})
-})
+  it('bar', () => {});
+});
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-describe('foo',()=>{
-  test('foo', ()=>{})
+describe('foo', () => {
+  test('foo', () => {});
 
-  test('bar', ()=>{})
-})
+  test('bar', () => {});
+});
 ```
 
 ```js
-describe('foo',()=>{
-  it('foo', ()=>{})
+describe('foo', () => {
+  it('foo', () => {});
 
-  it('bar', ()=>{})
-})
+  it('bar', () => {});
+});
 ```
 
 ```js
-describe('foo',()=>{
-  it('foo', ()=>{})
+describe('foo', () => {
+  it('foo', () => {});
 
-  it('bar', ()=>{})
-})
+  it('bar', () => {});
+});
 ```
 
 ## When Not To Use It
