@@ -2,14 +2,14 @@ const setPaddingBetweenNodes = ({
   context,
   problemNode,
   firstNode,
-  message
+  message,
 }) => {
   context.report({
     node: problemNode,
     message,
     fix: function(fixer) {
-      return fixer.insertTextAfter(firstNode, "\n");
-    }
+      return fixer.insertTextAfter(firstNode, '\n');
+    },
   });
 };
 
@@ -33,7 +33,7 @@ export const padBefore = ({ context, node, beforeMessage }) => {
       context,
       problemNode: node,
       firstNode: leftSibling,
-      message: beforeMessage
+      message: beforeMessage,
     });
   }
 };

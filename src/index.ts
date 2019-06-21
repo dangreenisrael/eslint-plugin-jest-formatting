@@ -3,8 +3,8 @@
  * @author Dan
  */
 
-import paddingBeforeDescribeBlocks from "./rules/padding-before-describe-blocks";
-import paddingBeforeTestBlocks from "./rules/padding-before-test-blocks";
+import paddingBeforeDescribeBlocks from './rules/padding-before-describe-blocks';
+import paddingBeforeTestBlocks from './rules/padding-before-test-blocks';
 
 //------------------------------------------------------------------------------
 // Plugin Definition
@@ -13,6 +13,6 @@ import paddingBeforeTestBlocks from "./rules/padding-before-test-blocks";
 // import all rules in lib/rules
 
 export const rules = {
-  "padding-before-describe-blocks": paddingBeforeDescribeBlocks,
-  "padding-before-test-blocks": paddingBeforeTestBlocks
+  'padding-before-describe-blocks': paddingBeforeDescribeBlocks,
+  'padding-before-test-blocks': paddingBeforeTestBlocks,
 };

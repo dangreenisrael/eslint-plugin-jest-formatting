@@ -2,19 +2,17 @@
  * @fileoverview Enforces a single line of padding between test blocks with a describe
  * @author Dan Green-Leipciger
  */
-"use strict";
 
 //------------------------------------------------------------------------------
 // Requirements
 //------------------------------------------------------------------------------
-
-const rule = require("../../../lib").rules["padding-before-test-blocks"];
-const RuleTester = require("eslint").RuleTester;
+const { RuleTester } = require('eslint');
+const rule = require('../../../lib').rules['padding-before-test-blocks'];
 
 RuleTester.setDefaultConfig({
   parserOptions: {
-    ecmaVersion: 6
-  }
+    ecmaVersion: 6,
+  },
 });
 
 //------------------------------------------------------------------------------
@@ -82,7 +80,7 @@ it('bar', ()=>{
 `;
 
 const ruleTester = new RuleTester();
-ruleTester.run("padding-between-test-blocks", rule, {
+ruleTester.run('padding-between-test-blocks', rule, {
   valid: [validIts, validTests, validPaddedWithComments],
   invalid: [
     {
@@ -91,13 +89,13 @@ ruleTester.run("padding-between-test-blocks", rule, {
       errors: [
         {
           message: rule.beforeMessage,
-          type: "ExpressionStatement"
+          type: 'ExpressionStatement',
         },
         {
           message: rule.beforeMessage,
-          type: "ExpressionStatement"
-        }
-      ]
+          type: 'ExpressionStatement',
+        },
+      ],
     },
     {
       code: invalidTests,
@@ -105,9 +103,9 @@ ruleTester.run("padding-between-test-blocks", rule, {
       errors: [
         {
           message: rule.beforeMessage,
-          type: "ExpressionStatement"
-        }
-      ]
-    }
-  ]
+          type: 'ExpressionStatement',
+        },
+      ],
+    },
+  ],
 });

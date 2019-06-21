@@ -2,19 +2,18 @@
  * @fileoverview Enforces single line padding around describe blocks
  * @author Dan Green-Leipciger
  */
-"use strict";
 
 //------------------------------------------------------------------------------
 // Requirements
 //------------------------------------------------------------------------------
 
-const rule = require("../../../lib").rules['padding-before-describe-blocks'];
-const RuleTester = require("eslint").RuleTester;
+const { RuleTester } = require('eslint');
+const rule = require('../../../lib').rules['padding-before-describe-blocks'];
 
 RuleTester.setDefaultConfig({
   parserOptions: {
-    ecmaVersion: 6
-  }
+    ecmaVersion: 6,
+  },
 });
 //------------------------------------------------------------------------------
 // Tests
@@ -71,7 +70,7 @@ const invalidBlockLevel = `{
 }`;
 
 const ruleTester = new RuleTester();
-ruleTester.run("padding-describe-blocks", rule, {
+ruleTester.run('padding-describe-blocks', rule, {
   valid: [validTopLevel, validBlockLevel],
   invalid: [
     {
@@ -80,14 +79,14 @@ ruleTester.run("padding-describe-blocks", rule, {
       errors: [
         {
           message: rule.beforeMessage,
-          type: "ExpressionStatement"
+          type: 'ExpressionStatement',
         },
 
         {
           message: rule.beforeMessage,
-          type: "ExpressionStatement"
-        }
-      ]
+          type: 'ExpressionStatement',
+        },
+      ],
     },
     {
       code: invalidBlockLevel,
@@ -95,14 +94,14 @@ ruleTester.run("padding-describe-blocks", rule, {
       errors: [
         {
           message: rule.beforeMessage,
-          type: "ExpressionStatement"
+          type: 'ExpressionStatement',
         },
 
         {
           message: rule.beforeMessage,
-          type: "ExpressionStatement"
-        }
-      ]
-    }
-  ]
+          type: 'ExpressionStatement',
+        },
+      ],
+    },
+  ],
 });
