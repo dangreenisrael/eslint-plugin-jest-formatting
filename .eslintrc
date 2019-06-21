@@ -1,0 +1,15 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "extends": ["airbnb-base", "plugin:prettier/recommended"],
+  "overrides": [
+    {
+      "files": ["**.*"],
+      "rules": {
+        "camelcase": "off"
+      }
+    }
+  ]
+}
