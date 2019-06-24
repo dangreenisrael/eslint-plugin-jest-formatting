@@ -41,7 +41,7 @@
     "ts-jest": "24.0.2"
   },
   "engines": {
-    "node": "8.10.0"
+    "node": ">=8.10.0"
   },
   "license": "MIT"
 }
