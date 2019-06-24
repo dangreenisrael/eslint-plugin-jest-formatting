@@ -1156,10 +1156,10 @@ eslint-plugin-jest-formatting@^0.0.10:
   resolved "https://registry.yarnpkg.com/eslint-plugin-jest-formatting/-/eslint-plugin-jest-formatting-0.0.10.tgz#290062db975f80c087af0524da3bf5e65d50dcaa"
   integrity sha512-6fJrittgd/Wj9T+dKrJnwA2DK8FZF8H13X71Wpi+txotdXIRfcRZwX5DJsypENm5DN6A8DzyOaYnQlFj+klK0A==
 
-eslint-plugin-jest@22.7.0:
-  version "22.7.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-22.7.0.tgz#a1d325bccb024b04f5354c56fe790baba54a454c"
-  integrity sha512-0U9nBd9V6+GKpM/KvRDcmMuPsewSsdM7NxCozgJkVAh8IrwHmQ0aw44/eYuVkhT8Fcdhsz0zYiyPtKg147eXMQ==
+eslint-plugin-jest@22.7.1:
+  version "22.7.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-22.7.1.tgz#5dcdf8f7a285f98040378220d6beca581f0ab2a1"
+  integrity sha512-CrT3AzA738neimv8G8iK2HCkrCwHnAJeeo7k5TEHK86VMItKl6zdJT/tHBDImfnVVAYsVs4Y6BUdBZQCCgfiyw==
 
 eslint-plugin-prettier@3.1.0:
   version "3.1.0"
