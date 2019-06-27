@@ -1151,10 +1151,8 @@ eslint-plugin-import@2.14.0:
     read-pkg-up "^2.0.0"
     resolve "^1.6.0"
 
-eslint-plugin-jest-formatting@^0.0.10:
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest-formatting/-/eslint-plugin-jest-formatting-0.0.10.tgz#290062db975f80c087af0524da3bf5e65d50dcaa"
-  integrity sha512-6fJrittgd/Wj9T+dKrJnwA2DK8FZF8H13X71Wpi+txotdXIRfcRZwX5DJsypENm5DN6A8DzyOaYnQlFj+klK0A==
+"eslint-plugin-jest-formatting@file:./.":
+  version "0.0.12"
 
 eslint-plugin-jest@22.7.0:
   version "22.7.0"

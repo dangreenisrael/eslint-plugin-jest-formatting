@@ -10,98 +10,96 @@
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib').rules['padding-before-describe-blocks'];
 
-RuleTester.setDefaultConfig({
+const ruleTester = new RuleTester({
   parserOptions: {
     ecmaVersion: 6,
   },
 });
+
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
-const validTopLevel = `
+const valid = `
 foo();
 bar();
-const thing="ok";
 
-describe('bar',()=>{
+const someText = 'abc';
+const someObject = {
+  one: 1,
+  two: 2,
+};
 
+// A comment before describe
+describe('someText', () => {
+  describe('some condition', () => {
+  });
+
+  describe('some other condition', () => {
+  });
 });
 
-describe('baz',()=>{
+describe('someObject', () => {
+  // Another comment
+  describe('some condition', () => {
+    const anotherThing = 500;
 
+    describe('yet another condition', () => {
+    });
+  });
 });
 `;
 
-const invalidTopLevel = `
+const invalid = `
 foo();
 bar();
-const thing="ok";
-describe('bar',()=>{
 
+const someText = 'abc';
+const someObject = {
+  one: 1,
+  two: 2,
+};
+// A comment before describe
+describe('someText', () => {
+  describe('some condition', () => {
+  });
+  describe('some other condition', () => {
+  });
 });
-describe('baz',()=>{
-
+describe('someObject', () => {
+  // Another comment
+  describe('some condition', () => {
+    const anotherThing = 500;
+    describe('yet another condition', () => {
+    });
+  });
 });
 `;
 
-const validBlockLevel = `{
-  foo();
-  bar();
-
-  describe('bar',()=>{
-
-  });
-
-  describe('baz',()=>{
-
-  });
-}`;
-
-const invalidBlockLevel = `{
-  foo();
-  bar();
-  describe('bar',()=>{
-
-  });
-  describe('baz',()=>{
-
-  });
-}`;
-
-const ruleTester = new RuleTester();
 ruleTester.run('padding-describe-blocks', rule, {
-  valid: [validTopLevel, validBlockLevel],
+  valid: [valid],
   invalid: [
     {
-      code: invalidTopLevel,
-      output: validTopLevel,
-      errors: [
-        {
-          message: rule.beforeMessage,
-          type: 'ExpressionStatement',
-        },
-
-        {
-          message: rule.beforeMessage,
-          type: 'ExpressionStatement',
-        },
-      ],
+      code: invalid,
+      errors: 4,
+      output: valid,
     },
     {
-      code: invalidBlockLevel,
-      output: validBlockLevel,
+      code: invalid,
       errors: [
         {
-          message: rule.beforeMessage,
-          type: 'ExpressionStatement',
+          message: 'Expected blank line before this statement.'
         },
-
         {
-          message: rule.beforeMessage,
-          type: 'ExpressionStatement',
+          message: 'Expected blank line before this statement.'
         },
-      ],
+        {
+          message: 'Expected blank line before this statement.'
+        },
+        {
+          message: 'Expected blank line before this statement.'
+        }
+      ]
     },
-  ],
+  ]
 });

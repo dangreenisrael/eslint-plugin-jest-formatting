@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-jest-formatting",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Formatting rules for jest tests",
   "keywords": [
     "eslint",
@@ -23,6 +23,9 @@
     "build": "tsc",
     "test": "yarn build && jest"
   },
+  "peerDependencies": {
+    "eslint": "5.x"
+  },
   "devDependencies": {
     "@types/eslint": "4.16.6",
     "@types/jest": "24.0.11",
@@ -33,7 +36,7 @@
     "eslint-config-prettier": "5.0.0",
     "eslint-plugin-import": "2.14.0",
     "eslint-plugin-jest": "22.7.0",
-    "eslint-plugin-jest-formatting": "^0.0.10",
+    "eslint-plugin-jest-formatting": "file:.",
     "eslint-plugin-prettier": "3.1.0",
     "jest": "24.8.0",
     "prettier": "1.18.2",
