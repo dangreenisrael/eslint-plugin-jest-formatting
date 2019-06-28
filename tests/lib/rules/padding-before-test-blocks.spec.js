@@ -70,6 +70,7 @@ const validPaddedWithComments = `
 test('foo', ()=>{
 
 })
+
 /*
 Some comment
 */
@@ -88,12 +89,10 @@ ruleTester.run('padding-between-test-blocks', rule, {
       output: validIts,
       errors: [
         {
-          message: rule.beforeMessage,
-          type: 'ExpressionStatement',
+          message: 'Expected blank line before this statement.',
         },
         {
-          message: rule.beforeMessage,
-          type: 'ExpressionStatement',
+          message: 'Expected blank line before this statement.',
         },
       ],
     },
@@ -102,8 +101,7 @@ ruleTester.run('padding-between-test-blocks', rule, {
       output: validTests,
       errors: [
         {
-          message: rule.beforeMessage,
-          type: 'ExpressionStatement',
+          message: 'Expected blank line before this statement.'
         },
       ],
     },

@@ -14,9 +14,6 @@ const astUtils = require('eslint/lib/util/ast-utils');
 // Helpers
 //------------------------------------------------------------------------------
 
-// TODO: Check how this behaves when run alongside padding-line-between-statements
-// TODO: Allow customizing pattern to identify test files (can jest provide it? can we detect it with import?)
-
 const LT = `[${Array.from(astUtils.LINEBREAKS).join('')}]`;
 const PADDING_LINE_SEQUENCE = new RegExp(
   String.raw`^(\s*?${LT})\s*${LT}(\s*;?)$`,
