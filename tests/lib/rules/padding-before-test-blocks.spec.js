@@ -9,7 +9,7 @@
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib').rules['padding-before-test-blocks'];
 
-RuleTester.setDefaultConfig({
+const ruleTester = new RuleTester({
   parserOptions: {
     ecmaVersion: 6,
   },
@@ -19,89 +19,111 @@ RuleTester.setDefaultConfig({
 // Tests
 //------------------------------------------------------------------------------
 
-const invalidIts = `
-const foo = 'bar';
-const bar = 'baz';
-it('foo', ()=>{
-
-})
-it('bar', ()=>{
-
-})
-`;
-
-const validIts = `
+const valid = `
 const foo = 'bar';
 const bar = 'baz';
 
-it('foo', ()=>{
-
-})
-
-it('bar', ()=>{
-
-})
-`;
-
-const invalidTests = `
-describe('foo', ()=>{
-  test('foo', ()=>{
-
-  })
-  test('bar', ()=>{
-
-  })
+it('foo', () => {
+  // stuff
 });
-`;
 
-const validTests = `
-describe('foo', ()=>{
-  test('foo', ()=>{
-
-  })
-
-  test('bar', ()=>{
-
-  })
+it('bar', () => {
+  // stuff
 });
+
+test('foo foo', () => {});
+
+test('bar bar', () => {});
+
+// Nesting
+describe('other bar', () => {
+  const thing = 123;
+
+  test('is another bar w/ test', () => {
+  });
+
+  // With a comment
+  it('is another bar w/ it', () => {
+  });
+
+  test.skip('skipping', () => {}); // Another comment
+
+  it.skip('skipping too', () => {});
+});
+
+test('weird', () => {});
+
+test
+  .skip('skippy skip', () => {});
 `;
 
-const validPaddedWithComments = `
-test('foo', ()=>{
+const invalid = `
+const foo = 'bar';
+const bar = 'baz';
+it('foo', () => {
+  // stuff
+});
+it('bar', () => {
+  // stuff
+});
+test('foo foo', () => {});
+test('bar bar', () => {});
 
-})
-
-/*
-Some comment
-*/
-//Baz
-it('bar', ()=>{
-
-})
+// Nesting
+describe('other bar', () => {
+  const thing = 123;
+  test('is another bar w/ test', () => {
+  });
+  // With a comment
+  it('is another bar w/ it', () => {
+  });
+  test.skip('skipping', () => {}); // Another comment
+  it.skip('skipping too', () => {});
+});test('weird', () => {});
+test
+  .skip('skippy skip', () => {});
 `;
 
-const ruleTester = new RuleTester();
 ruleTester.run('padding-between-test-blocks', rule, {
-  valid: [validIts, validTests, validPaddedWithComments],
+  valid: [valid],
   invalid: [
     {
-      code: invalidIts,
-      output: validIts,
-      errors: [
-        {
-          message: 'Expected blank line before this statement.',
-        },
-        {
-          message: 'Expected blank line before this statement.',
-        },
-      ],
+      code: invalid,
+      errors: 10,
+      output: valid,
     },
     {
-      code: invalidTests,
-      output: validTests,
+      code: invalid,
       errors: [
         {
-          message: 'Expected blank line before this statement.'
+          message: 'Expected blank line before this statement.',
+        },
+        {
+          message: 'Expected blank line before this statement.',
+        },
+        {
+          message: 'Expected blank line before this statement.',
+        },
+        {
+          message: 'Expected blank line before this statement.',
+        },
+        {
+          message: 'Expected blank line before this statement.',
+        },
+        {
+          message: 'Expected blank line before this statement.',
+        },
+        {
+          message: 'Expected blank line before this statement.',
+        },
+        {
+          message: 'Expected blank line before this statement.',
+        },
+        {
+          message: 'Expected blank line before this statement.',
+        },
+        {
+          message: 'Expected blank line before this statement.',
         },
       ],
     },
