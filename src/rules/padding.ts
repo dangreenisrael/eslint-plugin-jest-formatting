@@ -1,7 +1,6 @@
 /**
  * @fileoverview Rule to require or disallow newlines between jest functions,
  *   based on eslint/padding-line-between-statements by Toru Nagashima
- * @author Ben Kimpel
  */
 
 //------------------------------------------------------------------------------
