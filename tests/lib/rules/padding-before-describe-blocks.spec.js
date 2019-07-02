@@ -44,10 +44,19 @@ describe('someObject', () => {
   describe('some condition', () => {
     const anotherThing = 500;
 
-    describe('yet another condition', () => {
+    describe('yet another condition', () => { // A comment over here!
     });
   });
 });
+
+describe('weird', () => {});
+
+describe.skip('skip me', () => {});
+
+describe
+  .skip('skip me too', () => {
+    // stuff
+  });
 `;
 
 const invalid = `
@@ -70,10 +79,15 @@ describe('someObject', () => {
   // Another comment
   describe('some condition', () => {
     const anotherThing = 500;
-    describe('yet another condition', () => {
+    describe('yet another condition', () => { // A comment over here!
     });
   });
-});
+});describe('weird', () => {});
+describe.skip('skip me', () => {});
+describe
+  .skip('skip me too', () => {
+    // stuff
+  });
 `;
 
 ruleTester.run('padding-describe-blocks', rule, {
@@ -81,7 +95,7 @@ ruleTester.run('padding-describe-blocks', rule, {
   invalid: [
     {
       code: invalid,
-      errors: 4,
+      errors: 7,
       output: valid,
     },
     {
@@ -98,7 +112,16 @@ ruleTester.run('padding-describe-blocks', rule, {
         },
         {
           message: 'Expected blank line before this statement.'
-        }
+        },
+        {
+          message: 'Expected blank line before this statement.'
+        },
+        {
+          message: 'Expected blank line before this statement.'
+        },
+        {
+          message: 'Expected blank line before this statement.'
+        },
       ]
     },
   ]
