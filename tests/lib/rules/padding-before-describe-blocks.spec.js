@@ -102,25 +102,39 @@ ruleTester.run('padding-describe-blocks', rule, {
       code: invalid,
       errors: [
         {
-          message: 'Expected blank line before this statement.'
+          message: 'Expected blank line before this statement.',
+          line: 11,
+          column: 1
         },
         {
-          message: 'Expected blank line before this statement.'
+          message: 'Expected blank line before this statement.',
+          line: 14,
+          column: 3
         },
         {
-          message: 'Expected blank line before this statement.'
+          message: 'Expected blank line before this statement.',
+          line: 17,
+          column: 1
         },
         {
-          message: 'Expected blank line before this statement.'
+          message: 'Expected blank line before this statement.',
+          line: 21,
+          column: 5
         },
         {
-          message: 'Expected blank line before this statement.'
+          message: 'Expected blank line before this statement.',
+          line: 24,
+          column: 4
         },
         {
-          message: 'Expected blank line before this statement.'
+          message: 'Expected blank line before this statement.',
+          line: 25,
+          column: 1
         },
         {
-          message: 'Expected blank line before this statement.'
+          message: 'Expected blank line before this statement.',
+          line: 26,
+          column: 1
         },
       ]
     },

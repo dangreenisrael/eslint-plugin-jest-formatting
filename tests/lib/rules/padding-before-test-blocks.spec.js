@@ -97,33 +97,53 @@ ruleTester.run('padding-between-test-blocks', rule, {
       errors: [
         {
           message: 'Expected blank line before this statement.',
+          line: 4,
+          column: 1
         },
         {
           message: 'Expected blank line before this statement.',
+          line: 7,
+          column: 1
         },
         {
           message: 'Expected blank line before this statement.',
+          line: 10,
+          column: 1
         },
         {
           message: 'Expected blank line before this statement.',
+          line: 11,
+          column: 1
         },
         {
           message: 'Expected blank line before this statement.',
+          line: 16,
+          column: 3
         },
         {
           message: 'Expected blank line before this statement.',
+          line: 19,
+          column: 3
         },
         {
           message: 'Expected blank line before this statement.',
+          line: 21,
+          column: 3
         },
         {
           message: 'Expected blank line before this statement.',
+          line: 22,
+          column: 3
         },
         {
           message: 'Expected blank line before this statement.',
+          line: 23,
+          column: 4
         },
         {
           message: 'Expected blank line before this statement.',
+          line: 24,
+          column: 1
         },
       ],
     },
