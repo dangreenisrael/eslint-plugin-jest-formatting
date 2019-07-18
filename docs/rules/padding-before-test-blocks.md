@@ -2,7 +2,7 @@
 
 ## Rule Details
 
-This rule enforces at least one line of padding before test blocks with a describe (newling or comment).
+This rule enforces at least one line of padding before test blocks with a describe (newline or comment).
 
 Examples of **incorrect** code for this rule:
 
@@ -20,14 +20,6 @@ describe('foo', () => {
 });
 ```
 
-```js
-describe('foo', () => {
-  it('foo', () => {});
-
-  it('bar', () => {});
-});
-```
-
 Examples of **correct** code for this rule:
 
 ```js
@@ -35,14 +27,6 @@ describe('foo', () => {
   test('foo', () => {});
 
   test('bar', () => {});
-});
-```
-
-```js
-describe('foo', () => {
-  it('foo', () => {});
-
-  it('bar', () => {});
 });
 ```
 
