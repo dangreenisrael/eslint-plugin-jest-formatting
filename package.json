@@ -24,6 +24,9 @@
     "test": "yarn build && jest",
     "link-plugin": "yarn link && yarn link eslint-plugin-jest-formatting"
   },
+  "peerDependencies": {
+    "eslint": ">=0.8.0"
+  },
   "devDependencies": {
     "@types/eslint": "4.16.6",
     "@types/jest": "24.0.11",
