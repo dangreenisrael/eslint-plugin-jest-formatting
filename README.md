@@ -38,14 +38,30 @@ Then configure the rules you want to use under the rules section.
 ```json
 {
   "rules": {
-    "jest-formatting/padding-before-test-blocks": 2,
-    "jest-formatting/padding-before-describe-blocks": 2
+    "jest-formatting/padding-before-all": 2
+  }
+}
+```
+
+_or_
+
+```json
+{
+  "rules": {
+    "jest-formatting/padding-before-describe-blocks": 2,
+    "jest-formatting/padding-before-test-blocks": 2
   }
 }
 ```
 
 ## Rule Documentation
 
-- [padding-before-test-blocks](docs/rules/padding-before-test-blocks.md)
+- [padding-before-all](docs/rules/padding-before-all.md)
 
+- [padding-before-after-all-blocks](docs/rules/padding-before-after-all-blocks.md)
+- [padding-before-after-each-blocks](docs/rules/padding-before-after-each-blocks.md)
+- [padding-before-before-all-blocks](docs/rules/padding-before-before-all-blocks.md)
+- [padding-before-before-each-blocks](docs/rules/padding-before-before-each-blocks.md)
 - [padding-before-describe-blocks](docs/rules/padding-before-describe-blocks.md)
+- [padding-before-expect-statements](docs/rules/padding-before-expect-statements.md)
+- [padding-before-test-blocks](docs/rules/padding-before-test-blocks.md)

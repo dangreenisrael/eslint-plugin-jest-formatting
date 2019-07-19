@@ -1,59 +1,31 @@
-# padding-test-blocks
+# padding-before-test-blocks
 
 ## Rule Details
 
-This rule enforces at least one line of padding before test blocks with a describe (newling or comment).
+This rule enforces a line of padding before test/it blocks
 
 Examples of **incorrect** code for this rule:
 
 ```js
-describe('foo', () => {
-  test('foo', () => {});
-  test('bar', () => {});
-});
+test('foo', () => {});
+test('bar', () => {});
 ```
 
 ```js
-describe('foo', () => {
-  it('foo', () => {});
-  it('bar', () => {});
-});
-```
-
-```js
-describe('foo', () => {
-  it('foo', () => {});
-
-  it('bar', () => {});
-});
+it('foo', () => {});
+it('bar', () => {});
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-describe('foo', () => {
-  test('foo', () => {});
+test('foo', () => {});
 
-  test('bar', () => {});
-});
+test('bar', () => {});
 ```
 
 ```js
-describe('foo', () => {
-  it('foo', () => {});
+it('foo', () => {});
 
-  it('bar', () => {});
-});
+it('bar', () => {});
 ```
-
-```js
-describe('foo', () => {
-  it('foo', () => {});
-
-  it('bar', () => {});
-});
-```
-
-## When Not To Use It
-
-If you don't care about spacing between test/it blocks

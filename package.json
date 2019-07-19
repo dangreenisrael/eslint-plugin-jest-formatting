@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-jest-formatting",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Formatting rules for jest tests",
   "keywords": [
     "eslint",
@@ -18,13 +18,18 @@
   "module": "src/index.ts",
   "scripts": {
     "pretty": "yarn prettier '**/*.*'",
-    "lint": "yarn pretty --check && yarn eslint .",
-    "format": "yarn build && yarn pretty --write && yarn eslint --fix .",
+    "lint": "yarn build && yarn link-plugin && yarn pretty --check && yarn eslint .",
+    "format": "yarn build && yarn link-plugin && yarn pretty --write && yarn eslint --fix .",
     "build": "tsc",
-    "test": "yarn build && jest"
+    "test": "yarn build && jest",
+    "link-plugin": "yarn link && yarn link eslint-plugin-jest-formatting"
+  },
+  "peerDependencies": {
+    "eslint": ">=0.8.0"
   },
   "devDependencies": {
     "@types/eslint": "4.16.6",
+    "@types/estree": "0.0.39",
     "@types/jest": "24.0.11",
     "@types/node": "8.10.0",
     "@typescript-eslint/parser": "1.10.2",
@@ -33,7 +38,7 @@
     "eslint-config-prettier": "5.0.0",
     "eslint-plugin-import": "2.14.0",
     "eslint-plugin-jest": "22.7.0",
-    "eslint-plugin-jest-formatting": "^0.0.10",
+    "eslint-plugin-jest-formatting": "file:.",
     "eslint-plugin-prettier": "3.1.0",
     "jest": "24.8.0",
     "prettier": "1.18.2",
