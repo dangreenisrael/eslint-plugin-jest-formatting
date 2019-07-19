@@ -1,8 +1,8 @@
-# padding-describe-blocks
+# padding-before-describe-blocks
 
 ## Rule Details
 
-This rule enforces at least one line of padding before describe blocks (newline or comment).
+This rule enforces a line of padding before describe blocks
 
 Examples of **incorrect** code for this rule:
 

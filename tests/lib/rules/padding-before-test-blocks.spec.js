@@ -9,7 +9,7 @@
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib').rules['padding-before-test-blocks'];
 
-RuleTester.setDefaultConfig({
+const ruleTester = new RuleTester({
   parserOptions: {
     ecmaVersion: 6,
   },
@@ -19,91 +19,139 @@ RuleTester.setDefaultConfig({
 // Tests
 //------------------------------------------------------------------------------
 
-const invalidIts = `
-const foo = 'bar';
-const bar = 'baz';
-it('foo', ()=>{
-
-})
-it('bar', ()=>{
-
-})
-`;
-
-const validIts = `
+const valid = `
 const foo = 'bar';
 const bar = 'baz';
 
-it('foo', ()=>{
-
-})
-
-it('bar', ()=>{
-
-})
-`;
-
-const invalidTests = `
-describe('foo', ()=>{
-  test('foo', ()=>{
-
-  })
-  test('bar', ()=>{
-
-  })
+it('foo', () => {
+  // stuff
 });
-`;
 
-const validTests = `
-describe('foo', ()=>{
-  test('foo', ()=>{
-
-  })
-
-  test('bar', ()=>{
-
-  })
+it('bar', () => {
+  // stuff
 });
+
+test('foo foo', () => {});
+
+test('bar bar', () => {});
+
+// Nesting
+describe('other bar', () => {
+  const thing = 123;
+
+  test('is another bar w/ test', () => {
+  });
+
+  // With a comment
+  it('is another bar w/ it', () => {
+  });
+
+  test.skip('skipping', () => {}); // Another comment
+
+  it.skip('skipping too', () => {});
+});
+
+test('weird', () => {});
+
+test
+  .skip('skippy skip', () => {});
 `;
 
-const validPaddedWithComments = `
-test('foo', ()=>{
+const invalid = `
+const foo = 'bar';
+const bar = 'baz';
+it('foo', () => {
+  // stuff
+});
+it('bar', () => {
+  // stuff
+});
+test('foo foo', () => {});
+test('bar bar', () => {});
 
-})
-/*
-Some comment
-*/
-//Baz
-it('bar', ()=>{
-
-})
+// Nesting
+describe('other bar', () => {
+  const thing = 123;
+  test('is another bar w/ test', () => {
+  });
+  // With a comment
+  it('is another bar w/ it', () => {
+  });
+  test.skip('skipping', () => {}); // Another comment
+  it.skip('skipping too', () => {});
+});test('weird', () => {});
+test
+  .skip('skippy skip', () => {});
 `;
 
-const ruleTester = new RuleTester();
-ruleTester.run('padding-between-test-blocks', rule, {
-  valid: [validIts, validTests, validPaddedWithComments],
+ruleTester.run('padding-before-test-blocks', rule, {
+  valid: [
+    valid,
+    {
+      code: invalid,
+      filename: 'src/component.jsx'
+    }
+  ],
   invalid: [
     {
-      code: invalidIts,
-      output: validIts,
-      errors: [
-        {
-          message: rule.beforeMessage,
-          type: 'ExpressionStatement',
-        },
-        {
-          message: rule.beforeMessage,
-          type: 'ExpressionStatement',
-        },
-      ],
+      code: invalid,
+      filename: 'src/component.test.jsx',
+      errors: 10,
+      output: valid,
     },
     {
-      code: invalidTests,
-      output: validTests,
+      code: invalid,
+      filename: 'src/component.test.js',
       errors: [
         {
-          message: rule.beforeMessage,
-          type: 'ExpressionStatement',
+          message: 'Expected blank line before this statement.',
+          line: 4,
+          column: 1
+        },
+        {
+          message: 'Expected blank line before this statement.',
+          line: 7,
+          column: 1
+        },
+        {
+          message: 'Expected blank line before this statement.',
+          line: 10,
+          column: 1
+        },
+        {
+          message: 'Expected blank line before this statement.',
+          line: 11,
+          column: 1
+        },
+        {
+          message: 'Expected blank line before this statement.',
+          line: 16,
+          column: 3
+        },
+        {
+          message: 'Expected blank line before this statement.',
+          line: 19,
+          column: 3
+        },
+        {
+          message: 'Expected blank line before this statement.',
+          line: 21,
+          column: 3
+        },
+        {
+          message: 'Expected blank line before this statement.',
+          line: 22,
+          column: 3
+        },
+        {
+          message: 'Expected blank line before this statement.',
+          line: 23,
+          column: 4
+        },
+        {
+          message: 'Expected blank line before this statement.',
+          line: 24,
+          column: 1
         },
       ],
     },
