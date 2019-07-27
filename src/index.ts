@@ -29,6 +29,11 @@ export const rules = {
     { blankLine: 'always', prev: '*', next: 'expect' },
     { blankLine: 'any', prev: 'expect', next: 'expect' },
   ]),
+  'padding-around-expect-groups': makeRule([
+    { blankLine: 'always', prev: '*', next: 'expect' },
+    { blankLine: 'always', prev: 'expect', next: '*' },
+    { blankLine: 'any', prev: 'expect', next: 'expect' },
+  ]),
   'padding-before-test-blocks': makeRule([
     { blankLine: 'always', prev: '*', next: ['test', 'it'] },
   ]),
