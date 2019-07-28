@@ -10,6 +10,10 @@ import { makeRule } from './utils';
 //------------------------------------------------------------------------------
 
 export const rules = {
+  'padding-around-before-all-blocks': makeRule([
+    { blankLine: 'always', prev: '*', next: 'beforeAll' },
+    { blankLine: 'always', prev: 'beforeAll', next: '*' },
+  ]),
   'padding-before-after-all-blocks': makeRule([
     { blankLine: 'always', prev: '*', next: 'afterAll' },
   ]),
