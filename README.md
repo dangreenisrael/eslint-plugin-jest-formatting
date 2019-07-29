@@ -56,6 +56,7 @@ _or_
 
 ## Rule Documentation
 
+- [padding-around-after-each-statements](docs/rules/padding-around-after-each-statements.md)
 - [padding-around-before-all-blocks](docs/rules/padding-around-before-all-blocks.md)
 - [padding-around-before-each-blocks](docs/rules/padding-around-before-each-blocks.md)
 - [padding-around-expect-statements](docs/rules/padding-around-expect-statements.md)
