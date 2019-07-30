@@ -49,7 +49,7 @@ _or_
 {
   "rules": {
     "jest-formatting/padding-around-describe-blocks": 2,
-    "jest-formatting/padding-before-test-blocks": 2
+    "jest-formatting/padding-around-test-blocks": 2
   }
 }
 ```
@@ -62,8 +62,8 @@ _or_
 - [padding-around-before-each-blocks](docs/rules/padding-around-before-each-blocks.md)
 - [padding-around-expect-groups](docs/rules/padding-around-expect-groups.md)
 - [padding-around-describe-blocks](docs/rules/padding-around-describe-blocks.md)
+- [padding-around-test-blocks](docs/rules/padding-around-test-blocks.md)
 
-- [padding-before-test-blocks](docs/rules/padding-before-test-blocks.md)
 - [padding-before-all](docs/rules/padding-before-all.md)
 
 ### Deprecated
@@ -74,3 +74,4 @@ _or_
 - [padding-before-after-all-blocks](docs/rules/padding-before-after-all-blocks.md)
 - [padding-before-describe-blocks](docs/rules/padding-before-describe-blocks.md)
 - [padding-before-expect-statements](docs/rules/padding-before-expect-statements.md)
+- [padding-before-test-blocks](docs/rules/padding-before-test-blocks.md)
