@@ -26,6 +26,10 @@ export const rules = {
     { blankLine: 'always', prev: '*', next: 'beforeEach' },
     { blankLine: 'always', prev: 'beforeEach', next: '*' },
   ]),
+  'padding-around-describe-blocks': makeRule([
+    { blankLine: 'always', prev: '*', next: 'describe' },
+    { blankLine: 'always', prev: 'describe', next: '*' },
+  ]),
   'padding-before-after-all-blocks': makeRule([
     { blankLine: 'always', prev: '*', next: 'afterAll' },
   ]),
