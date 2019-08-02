@@ -1,10 +1,11 @@
-# padding-around-expect-statements
+# padding-around-expect-groups
 
 ## Rule Details
 
 This rule enforces a line of padding before _and_ after 1 or more `expect` statements
 
-Note that it does _not_ enforce a line of padding between an `expect` and a closing bracket in a block statement
+Note that it doesn't add/enforce a padding line if it's the last statement in its scope and
+it doesn't add/enforce padding between two or more adjacent `expect` statements.
 
 Examples of **incorrect** code for this rule:
 
