@@ -7,7 +7,9 @@
     "eslintplugin",
     "eslint-plugin",
     "jest",
-    "format"
+    "format",
+    "formatting",
+    "padding"
   ],
   "author": "Dan Green-Leipciger",
   "repository": {

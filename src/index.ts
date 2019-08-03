@@ -80,3 +80,18 @@ export const rules = {
     { blankLine: 'any', prev: 'expect', next: 'expect' },
   ]),
 };
+
+export const configs = {
+  recommended: {
+    plugins: ['jest-formatting'],
+    rules: {
+      'jest-formatting/padding-around-after-all-blocks': 2,
+      'jest-formatting/padding-around-after-each-blocks': 2,
+      'jest-formatting/padding-around-before-all-blocks': 2,
+      'jest-formatting/padding-around-before-each-blocks': 2,
+      'jest-formatting/padding-around-expect-groups': 2,
+      'jest-formatting/padding-around-describe-blocks': 2,
+      'jest-formatting/padding-around-test-blocks': 2,
+    },
+  },
+};
