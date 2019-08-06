@@ -38,19 +38,19 @@ Then configure the rules you want to use under the rules section.
 ```json
 {
   "rules": {
-    "jest-formatting/padding-before-all": 2
+    "jest-formatting/padding-around-describe-blocks": 2,
+    "jest-formatting/padding-around-test-blocks": 2
   }
 }
 ```
 
 _or_
 
+You can use our recommeneded settings which enables all of the rules for you
+
 ```json
 {
-  "rules": {
-    "jest-formatting/padding-around-describe-blocks": 2,
-    "jest-formatting/padding-around-test-blocks": 2
-  }
+  "extends": ["plugin:jest-formatting/recommended"]
 }
 ```
 
@@ -64,10 +64,9 @@ _or_
 - [padding-around-describe-blocks](docs/rules/padding-around-describe-blocks.md)
 - [padding-around-test-blocks](docs/rules/padding-around-test-blocks.md)
 
-- [padding-before-all](docs/rules/padding-before-all.md)
-
 ### Deprecated
 
+- [padding-before-all](docs/rules/padding-before-all.md)
 - [padding-before-before-each-blocks](docs/rules/padding-before-before-each-blocks.md)
 - [padding-before-after-each-blocks](docs/rules/padding-before-after-each-blocks.md)
 - [padding-before-before-all-blocks](docs/rules/padding-before-before-all-blocks.md)
