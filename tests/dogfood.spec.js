@@ -1,5 +1,3 @@
-//  'afterAll',
-
 beforeAll(() => {});
 
 beforeEach(() => {});
