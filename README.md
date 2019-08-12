@@ -1,8 +1,7 @@
 [![CircleCI](https://circleci.com/gh/dangreenisrael/eslint-plugin-jest-formatting/tree/master.svg?style=svg)](https://circleci.com/gh/dangreenisrael/eslint-plugin-jest-formatting/tree/master)
 ![npm monthly downloads](https://img.shields.io/npm/dm/eslint-plugin-jest-formatting.svg)
 
-***Note: The master version may not be the version deployed to npm. Please treat https://www.npmjs.com/package/eslint-plugin-jest-formatting as the cannonical source for docs.***
-
+**_Note: The master version may not be the version deployed to npm. Please treat https://www.npmjs.com/package/eslint-plugin-jest-formatting as the cannonical source for docs._**
 
 # eslint-plugin-jest-formatting
 
