@@ -4,7 +4,7 @@
 
 ### Added
 
-- Introduction of a "recommend" rules section
+- Exposes "recommended" rules for eslint `extends`
 
 - Improve documentation
 
