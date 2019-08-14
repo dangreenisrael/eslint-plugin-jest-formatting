@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.1.0 - August 14, 2019
+
+### Changed
+
+- Removed `padding-around-expect-groups` from the "recommended" set of rules.
+
+### Added
+
+- Exposes "strict" rules for eslint `extends`. This preset is equivalent to version `1.0.0`'s "recommended" preset.
+
 ## v1.0.0 - August 12, 2019
 
 ### Added
