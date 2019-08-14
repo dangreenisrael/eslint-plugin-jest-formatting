@@ -13,6 +13,10 @@ jobs:
   test:
     <<: *defaults
     steps:
+      - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
+
       - checkout
 
       - restore_cache:
@@ -28,7 +32,7 @@ jobs:
           command: yarn test
 
       - run: yarn lint
-      
+
       - save_cache:
           paths:
             - node_modules
