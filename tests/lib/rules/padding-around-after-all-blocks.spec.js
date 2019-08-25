@@ -71,13 +71,7 @@ describe('someText', () => {
 `;
 
 ruleTester.run('padding-before-after-all-blocks', rule, {
-  valid: [
-    valid,
-    {
-      code: invalid,
-      filename: 'src/component.jsx'
-    }
-  ],
+  valid: [valid],
   invalid: [
     {
       code: invalid,

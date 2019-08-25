@@ -85,13 +85,7 @@ test
 `;
 
 ruleTester.run('padding-before-test-blocks', rule, {
-  valid: [
-    valid,
-    {
-      code: invalid,
-      filename: 'src/component.jsx'
-    }
-  ],
+  valid: [valid],
   invalid: [
     {
       code: invalid,

@@ -3,106 +3,260 @@
  * @author Dan
  */
 
-import { makeRule } from './utils';
+import {
+  Config,
+  createRule,
+  PaddingType,
+  StatementType,
+} from './rules/padding';
 
-//------------------------------------------------------------------------------
-// Plugin Definition
-//------------------------------------------------------------------------------
-
-export const rules = {
-  'padding-around-after-all-blocks': makeRule([
-    { blankLine: 'always', prev: '*', next: 'afterAll' },
-    { blankLine: 'always', prev: 'afterAll', next: '*' },
-  ]),
-  'padding-around-after-each-blocks': makeRule([
-    { blankLine: 'always', prev: '*', next: 'afterEach' },
-    { blankLine: 'always', prev: 'afterEach', next: '*' },
-  ]),
-  'padding-around-before-all-blocks': makeRule([
-    { blankLine: 'always', prev: '*', next: 'beforeAll' },
-    { blankLine: 'always', prev: 'beforeAll', next: '*' },
-  ]),
-  'padding-around-before-each-blocks': makeRule([
-    { blankLine: 'always', prev: '*', next: 'beforeEach' },
-    { blankLine: 'always', prev: 'beforeEach', next: '*' },
-  ]),
-  'padding-around-describe-blocks': makeRule([
-    { blankLine: 'always', prev: '*', next: 'describe' },
-    { blankLine: 'always', prev: 'describe', next: '*' },
-  ]),
-  'padding-around-test-blocks': makeRule([
-    { blankLine: 'always', prev: '*', next: ['test', 'it'] },
-    { blankLine: 'always', prev: ['test', 'it'], next: '*' },
-  ]),
-  // Deprecated
-  'padding-before-after-all-blocks': makeRule([
-    { blankLine: 'always', prev: '*', next: 'afterAll' },
-  ]),
-  'padding-before-after-each-blocks': makeRule([
-    { blankLine: 'always', prev: '*', next: 'afterEach' },
-  ]),
-  'padding-before-before-all-blocks': makeRule([
-    { blankLine: 'always', prev: '*', next: 'beforeAll' },
-  ]),
-  'padding-before-before-each-blocks': makeRule([
-    { blankLine: 'always', prev: '*', next: 'beforeEach' },
-  ]),
-  'padding-before-describe-blocks': makeRule([
-    { blankLine: 'always', prev: '*', next: 'describe' },
-  ]),
-  'padding-before-expect-statements': makeRule([
-    { blankLine: 'always', prev: '*', next: 'expect' },
-    { blankLine: 'any', prev: 'expect', next: 'expect' },
-  ]),
-  'padding-around-expect-groups': makeRule([
-    { blankLine: 'always', prev: '*', next: 'expect' },
-    { blankLine: 'always', prev: 'expect', next: '*' },
-    { blankLine: 'any', prev: 'expect', next: 'expect' },
-  ]),
-  'padding-before-test-blocks': makeRule([
-    { blankLine: 'always', prev: '*', next: ['test', 'it'] },
-  ]),
-  'padding-before-all': makeRule([
+const paddingConfigs: { [name: string]: Config[] } = {
+  afterAll: [
     {
-      blankLine: 'always',
-      prev: '*',
-      next: [
-        'afterAll',
-        'afterEach',
-        'beforeAll',
-        'beforeEach',
-        'describe',
-        'expect',
-        'it',
-        'test',
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.Any,
+      nextStatementType: StatementType.AfterAllToken,
+    },
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.AfterAllToken,
+      nextStatementType: StatementType.Any,
+    },
+  ],
+  afterEach: [
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.Any,
+      nextStatementType: StatementType.AfterEachToken,
+    },
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.AfterEachToken,
+      nextStatementType: StatementType.Any,
+    },
+  ],
+  beforeAll: [
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.Any,
+      nextStatementType: StatementType.BeforeAllToken,
+    },
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.BeforeAllToken,
+      nextStatementType: StatementType.Any,
+    },
+  ],
+  beforeEach: [
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.Any,
+      nextStatementType: StatementType.BeforeEachToken,
+    },
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.BeforeEachToken,
+      nextStatementType: StatementType.Any,
+    },
+  ],
+  describe: [
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.Any,
+      nextStatementType: [
+        StatementType.DescribeToken,
+        StatementType.FdescribeToken,
+        StatementType.XdescribeToken,
       ],
     },
-    { blankLine: 'any', prev: 'expect', next: 'expect' },
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: [
+        StatementType.DescribeToken,
+        StatementType.FdescribeToken,
+        StatementType.XdescribeToken,
+      ],
+      nextStatementType: StatementType.Any,
+    },
+  ],
+  expect: [
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.Any,
+      nextStatementType: StatementType.ExpectToken,
+    },
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.ExpectToken,
+      nextStatementType: StatementType.Any,
+    },
+    {
+      paddingType: PaddingType.Any,
+      prevStatementType: StatementType.ExpectToken,
+      nextStatementType: StatementType.ExpectToken,
+    },
+  ],
+  test: [
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.Any,
+      nextStatementType: [
+        StatementType.TestToken,
+        StatementType.ItToken,
+        StatementType.FitToken,
+        StatementType.XitToken,
+        StatementType.XtestToken,
+      ],
+    },
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: [
+        StatementType.TestToken,
+        StatementType.ItToken,
+        StatementType.FitToken,
+        StatementType.XitToken,
+        StatementType.XtestToken,
+      ],
+      nextStatementType: StatementType.Any,
+    },
+  ],
+};
+
+export const rules = {
+  'padding-around-after-all-blocks': createRule(paddingConfigs.afterAll),
+  'padding-around-after-each-blocks': createRule(paddingConfigs.afterEach),
+  'padding-around-before-all-blocks': createRule(paddingConfigs.beforeAll),
+  'padding-around-before-each-blocks': createRule(paddingConfigs.beforeEach),
+  'padding-around-describe-blocks': createRule(paddingConfigs.describe),
+  'padding-around-expect-groups': createRule(paddingConfigs.expect),
+  'padding-around-test-blocks': createRule(paddingConfigs.test),
+  'padding-around-all': createRule(
+    [].concat(...Object.keys(paddingConfigs).map(k => paddingConfigs[k])),
+  ),
+  // ===========================================================================
+  // DEPRECATED
+  'padding-before-after-all-blocks': createRule([
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.Any,
+      nextStatementType: StatementType.AfterAllToken,
+    },
+  ]),
+  // DEPRECATED
+  'padding-before-after-each-blocks': createRule([
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.Any,
+      nextStatementType: StatementType.AfterEachToken,
+    },
+  ]),
+  // DEPRECATED
+  'padding-before-before-all-blocks': createRule([
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.Any,
+      nextStatementType: StatementType.BeforeAllToken,
+    },
+  ]),
+  // DEPRECATED
+  'padding-before-before-each-blocks': createRule([
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.Any,
+      nextStatementType: StatementType.BeforeEachToken,
+    },
+  ]),
+  // DEPRECATED
+  'padding-before-describe-blocks': createRule([
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.Any,
+      nextStatementType: StatementType.DescribeToken,
+    },
+  ]),
+  // DEPRECATED
+  'padding-before-expect-statements': createRule([
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.Any,
+      nextStatementType: StatementType.ExpectToken,
+    },
+    {
+      paddingType: PaddingType.Any,
+      prevStatementType: StatementType.ExpectToken,
+      nextStatementType: StatementType.ExpectToken,
+    },
+  ]),
+  // DEPRECATED
+  'padding-before-test-blocks': createRule([
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.Any,
+      nextStatementType: [StatementType.TestToken, StatementType.ItToken],
+    },
+  ]),
+  // DEPRECATED
+  'padding-before-all': createRule([
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.Any,
+      nextStatementType: [
+        StatementType.AfterAllToken,
+        StatementType.AfterEachToken,
+        StatementType.BeforeAllToken,
+        StatementType.BeforeEachToken,
+        StatementType.DescribeToken,
+        StatementType.ExpectToken,
+        StatementType.ItToken,
+        StatementType.TestToken,
+      ],
+    },
+    {
+      paddingType: PaddingType.Any,
+      prevStatementType: StatementType.ExpectToken,
+      nextStatementType: StatementType.ExpectToken,
+    },
   ]),
 };
 
 export const configs = {
   recommended: {
     plugins: ['jest-formatting'],
-    rules: {
-      'jest-formatting/padding-around-after-all-blocks': 2,
-      'jest-formatting/padding-around-after-each-blocks': 2,
-      'jest-formatting/padding-around-before-all-blocks': 2,
-      'jest-formatting/padding-around-before-each-blocks': 2,
-      'jest-formatting/padding-around-describe-blocks': 2,
-      'jest-formatting/padding-around-test-blocks': 2,
+    overrides: {
+      files: [
+        '**/*.test.*',
+        '**/*_test.*',
+        '**/*Test.*',
+        '**/*.spec.*',
+        '**/*_spec.*',
+        '**/*Spec.*',
+        '**/__tests__/*',
+      ],
+      rules: {
+        'jest-formatting/padding-around-after-all-blocks': 2,
+        'jest-formatting/padding-around-after-each-blocks': 2,
+        'jest-formatting/padding-around-before-all-blocks': 2,
+        'jest-formatting/padding-around-before-each-blocks': 2,
+        'jest-formatting/padding-around-describe-blocks': 2,
+        'jest-formatting/padding-around-test-blocks': 2,
+      },
     },
   },
   strict: {
     plugins: ['jest-formatting'],
-    rules: {
-      'jest-formatting/padding-around-after-all-blocks': 2,
-      'jest-formatting/padding-around-after-each-blocks': 2,
-      'jest-formatting/padding-around-before-all-blocks': 2,
-      'jest-formatting/padding-around-before-each-blocks': 2,
-      'jest-formatting/padding-around-expect-groups': 2,
-      'jest-formatting/padding-around-describe-blocks': 2,
-      'jest-formatting/padding-around-test-blocks': 2,
+    overrides: {
+      files: [
+        '**/*.test.*',
+        '**/*_test.*',
+        '**/*Test.*',
+        '**/*.spec.*',
+        '**/*_spec.*',
+        '**/*Spec.*',
+        '**/__tests__/*',
+      ],
+      rules: {
+        'jest-formatting/padding-around-all': 2,
+      },
     },
   },
 };

@@ -106,13 +106,7 @@ describe('someText', () => {
 `;
 
 ruleTester.run('padding-around-expect-groups', rule, {
-  valid: [
-    valid,
-    {
-      code: invalid,
-      filename: 'src/component.jsx',
-    }
-  ],
+  valid: [valid],
   invalid: [
     {
       code: invalid,

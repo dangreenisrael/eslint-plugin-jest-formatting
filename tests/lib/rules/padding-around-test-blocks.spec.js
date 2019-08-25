@@ -27,7 +27,7 @@ it('foo', () => {
   // stuff
 });
 
-it('bar', () => {
+fit('bar', () => {
   // stuff
 });
 
@@ -51,10 +51,12 @@ describe('other bar', () => {
   it.skip('skipping too', () => {});
 });
 
-test('weird', () => {});
+xtest('weird', () => {});
 
 test
   .skip('skippy skip', () => {});
+
+xit('bar foo', () => {});
 `;
 
 const invalid = `
@@ -63,7 +65,7 @@ const bar = 'baz';
 it('foo', () => {
   // stuff
 });
-it('bar', () => {
+fit('bar', () => {
   // stuff
 });
 test('foo foo', () => {});
@@ -79,24 +81,19 @@ describe('other bar', () => {
   });
   test.skip('skipping', () => {}); // Another comment
   it.skip('skipping too', () => {});
-});test('weird', () => {});
+});xtest('weird', () => {});
 test
   .skip('skippy skip', () => {});
+xit('bar foo', () => {});
 `;
 
 ruleTester.run('padding-around-test-blocks', rule, {
-  valid: [
-    valid,
-    {
-      code: invalid,
-      filename: 'src/component.jsx'
-    }
-  ],
+  valid: [valid],
   invalid: [
     {
       code: invalid,
       filename: 'src/component.test.jsx',
-      errors: 10,
+      errors: 11,
       output: valid,
     },
     {
@@ -151,6 +148,11 @@ ruleTester.run('padding-around-test-blocks', rule, {
         {
           message: 'Expected blank line before this statement.',
           line: 24,
+          column: 1
+        },
+        {
+          message: 'Expected blank line before this statement.',
+          line: 26,
           column: 1
         },
       ],
