@@ -3,82 +3,170 @@
  * @author Dan
  */
 
-import { makeRule } from './utils';
-
-//------------------------------------------------------------------------------
-// Plugin Definition
-//------------------------------------------------------------------------------
+import { createRule, PaddingType, StatementType } from './rules/padding';
 
 export const rules = {
-  'padding-around-after-all-blocks': makeRule([
-    { blankLine: 'always', prev: '*', next: 'afterAll' },
-    { blankLine: 'always', prev: 'afterAll', next: '*' },
-  ]),
-  'padding-around-after-each-blocks': makeRule([
-    { blankLine: 'always', prev: '*', next: 'afterEach' },
-    { blankLine: 'always', prev: 'afterEach', next: '*' },
-  ]),
-  'padding-around-before-all-blocks': makeRule([
-    { blankLine: 'always', prev: '*', next: 'beforeAll' },
-    { blankLine: 'always', prev: 'beforeAll', next: '*' },
-  ]),
-  'padding-around-before-each-blocks': makeRule([
-    { blankLine: 'always', prev: '*', next: 'beforeEach' },
-    { blankLine: 'always', prev: 'beforeEach', next: '*' },
-  ]),
-  'padding-around-describe-blocks': makeRule([
-    { blankLine: 'always', prev: '*', next: 'describe' },
-    { blankLine: 'always', prev: 'describe', next: '*' },
-  ]),
-  'padding-around-test-blocks': makeRule([
-    { blankLine: 'always', prev: '*', next: ['test', 'it'] },
-    { blankLine: 'always', prev: ['test', 'it'], next: '*' },
-  ]),
-  // Deprecated
-  'padding-before-after-all-blocks': makeRule([
-    { blankLine: 'always', prev: '*', next: 'afterAll' },
-  ]),
-  'padding-before-after-each-blocks': makeRule([
-    { blankLine: 'always', prev: '*', next: 'afterEach' },
-  ]),
-  'padding-before-before-all-blocks': makeRule([
-    { blankLine: 'always', prev: '*', next: 'beforeAll' },
-  ]),
-  'padding-before-before-each-blocks': makeRule([
-    { blankLine: 'always', prev: '*', next: 'beforeEach' },
-  ]),
-  'padding-before-describe-blocks': makeRule([
-    { blankLine: 'always', prev: '*', next: 'describe' },
-  ]),
-  'padding-before-expect-statements': makeRule([
-    { blankLine: 'always', prev: '*', next: 'expect' },
-    { blankLine: 'any', prev: 'expect', next: 'expect' },
-  ]),
-  'padding-around-expect-groups': makeRule([
-    { blankLine: 'always', prev: '*', next: 'expect' },
-    { blankLine: 'always', prev: 'expect', next: '*' },
-    { blankLine: 'any', prev: 'expect', next: 'expect' },
-  ]),
-  'padding-before-test-blocks': makeRule([
-    { blankLine: 'always', prev: '*', next: ['test', 'it'] },
-  ]),
-  'padding-before-all': makeRule([
+  'padding-around-after-all-blocks': createRule(
     {
-      blankLine: 'always',
-      prev: '*',
-      next: [
-        'afterAll',
-        'afterEach',
-        'beforeAll',
-        'beforeEach',
-        'describe',
-        'expect',
-        'it',
-        'test',
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.Any,
+      nextStatementType: StatementType.AfterAllToken,
+    },
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.AfterAllToken,
+      nextStatementType: StatementType.Any,
+    },
+  ),
+  'padding-around-after-each-blocks': createRule(
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.Any,
+      nextStatementType: StatementType.AfterEachToken,
+    },
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.AfterEachToken,
+      nextStatementType: StatementType.Any,
+    },
+  ),
+  'padding-around-before-all-blocks': createRule(
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.Any,
+      nextStatementType: StatementType.BeforeAllToken,
+    },
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.BeforeAllToken,
+      nextStatementType: StatementType.Any,
+    },
+  ),
+  'padding-around-before-each-blocks': createRule(
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.Any,
+      nextStatementType: StatementType.BeforeEachToken,
+    },
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.BeforeEachToken,
+      nextStatementType: StatementType.Any,
+    },
+  ),
+  'padding-around-describe-blocks': createRule(
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.Any,
+      nextStatementType: StatementType.DescribeToken,
+    },
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.DescribeToken,
+      nextStatementType: StatementType.Any,
+    },
+  ),
+  'padding-around-expect-groups': createRule(
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.Any,
+      nextStatementType: StatementType.ExpectToken,
+    },
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.ExpectToken,
+      nextStatementType: StatementType.Any,
+    },
+    {
+      paddingType: PaddingType.Any,
+      prevStatementType: StatementType.ExpectToken,
+      nextStatementType: StatementType.ExpectToken,
+    },
+  ),
+  'padding-around-test-blocks': createRule(
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.Any,
+      nextStatementType: [StatementType.TestToken, StatementType.ItToken],
+    },
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: [StatementType.TestToken, StatementType.ItToken],
+      nextStatementType: StatementType.Any,
+    },
+  ),
+  // ===========================================================================
+  // DEPRECATED
+  'padding-before-after-all-blocks': createRule({
+    paddingType: PaddingType.Always,
+    prevStatementType: StatementType.Any,
+    nextStatementType: StatementType.AfterAllToken,
+  }),
+  // DEPRECATED
+  'padding-before-after-each-blocks': createRule({
+    paddingType: PaddingType.Always,
+    prevStatementType: StatementType.Any,
+    nextStatementType: StatementType.AfterEachToken,
+  }),
+  // DEPRECATED
+  'padding-before-before-all-blocks': createRule({
+    paddingType: PaddingType.Always,
+    prevStatementType: StatementType.Any,
+    nextStatementType: StatementType.BeforeAllToken,
+  }),
+  // DEPRECATED
+  'padding-before-before-each-blocks': createRule({
+    paddingType: PaddingType.Always,
+    prevStatementType: StatementType.Any,
+    nextStatementType: StatementType.BeforeEachToken,
+  }),
+  // DEPRECATED
+  'padding-before-describe-blocks': createRule({
+    paddingType: PaddingType.Always,
+    prevStatementType: StatementType.Any,
+    nextStatementType: StatementType.DescribeToken,
+  }),
+  // DEPRECATED
+  'padding-before-expect-statements': createRule(
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.Any,
+      nextStatementType: StatementType.ExpectToken,
+    },
+    {
+      paddingType: PaddingType.Any,
+      prevStatementType: StatementType.ExpectToken,
+      nextStatementType: StatementType.ExpectToken,
+    },
+  ),
+  // DEPRECATED
+  'padding-before-test-blocks': createRule({
+    paddingType: PaddingType.Always,
+    prevStatementType: StatementType.Any,
+    nextStatementType: [StatementType.TestToken, StatementType.ItToken],
+  }),
+  // DEPRECATED
+  'padding-before-all': createRule(
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: StatementType.Any,
+      nextStatementType: [
+        StatementType.AfterAllToken,
+        StatementType.AfterEachToken,
+        StatementType.BeforeAllToken,
+        StatementType.BeforeEachToken,
+        StatementType.DescribeToken,
+        StatementType.ExpectToken,
+        StatementType.ItToken,
+        StatementType.TestToken,
       ],
     },
-    { blankLine: 'any', prev: 'expect', next: 'expect' },
-  ]),
+    {
+      paddingType: PaddingType.Any,
+      prevStatementType: StatementType.ExpectToken,
+      nextStatementType: StatementType.ExpectToken,
+    },
+  ),
 };
 
 export const configs = {
