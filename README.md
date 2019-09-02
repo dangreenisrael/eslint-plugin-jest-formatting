@@ -14,7 +14,7 @@ Like this plugin? [Say thanks with a ⭐️](https://github.com/dangreenisrael/e
 You'll first need to install [ESLint](http://eslint.org):
 
 ```
-$ yarn add eslint -dev
+$ yarn add eslint --dev
 ```
 
 Next, install `eslint-plugin-jest-formatting`:
