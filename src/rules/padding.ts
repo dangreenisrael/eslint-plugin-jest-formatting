@@ -1,5 +1,5 @@
 /**
- * Require/fix newlines between jest functions
+ * Require/fix newlines around jest functions
  *
  * Based on eslint/padding-line-between-statements by Toru Nagashima
  * See: https://github.com/eslint/eslint/blob/master/lib/rules/padding-line-between-statements.js
@@ -155,7 +155,7 @@ const paddingAlwaysTester = (
            *     bar();
            */
           filter(token: AST.Token): boolean {
-            if (astUtils.isTokenOnSameLine(prevToken, token)) {
+            if (astUtils.areTokensOnSameLine(prevToken, token)) {
               prevToken = token;
               return false;
             }
@@ -164,7 +164,7 @@ const paddingAlwaysTester = (
           },
         }) || nextNode;
 
-      const insertText = astUtils.isTokenOnSameLine(prevToken, nextToken)
+      const insertText = astUtils.areTokensOnSameLine(prevToken, nextToken)
         ? '\n\n'
         : '\n';
 
@@ -256,7 +256,8 @@ const testPadding = (
     }
   }
 
-  // This is basically... "eh, whatever"
+  // There were no matching padding rules for the prevNode, nextNode,
+  // paddingType combination... so we'll use PaddingType.Any which is always ok
   return testType(PaddingType.Any);
 };
 

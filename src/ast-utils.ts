@@ -1,10 +1,10 @@
 import { AST, SourceCode } from 'eslint';
 import { Node } from 'estree';
 
-export const isSemicolonToken = (token: AST.Token): boolean =>
+export const isTokenASemicolon = (token: AST.Token): boolean =>
   token.value === ';' && token.type === 'Punctuator';
 
-export const isTokenOnSameLine = (
+export const areTokensOnSameLine = (
   left: Node | AST.Token,
   right: Node | AST.Token,
 ): boolean => left.loc.end.line === right.loc.start.line;
@@ -41,7 +41,7 @@ export const getActualLastToken = (
     prevToken &&
       nextToken &&
       prevToken.range[0] >= node.range[0] &&
-      isSemicolonToken(semiToken) &&
+      isTokenASemicolon(semiToken) &&
       semiToken.loc.start.line !== prevToken.loc.end.line &&
       semiToken.loc.end.line === nextToken.loc.start.line,
   );
