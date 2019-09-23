@@ -91,13 +91,7 @@ describe
 `;
 
 ruleTester.run('padding-before-describe-blocks', rule, {
-  valid: [
-    valid,
-    {
-      code: invalid,
-      filename: 'src/component.jsx',
-    }
-  ],
+  valid: [valid],
   invalid: [
     {
       code: invalid,

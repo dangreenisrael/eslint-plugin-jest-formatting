@@ -100,13 +100,7 @@ describe('someText', () => {
 `;
 
 ruleTester.run('padding-before-expect-statements', rule, {
-  valid: [
-    valid,
-    {
-      code: invalid,
-      filename: 'src/component.jsx',
-    }
-  ],
+  valid: [valid],
   invalid: [
     {
       code: invalid,
