@@ -312,9 +312,13 @@ const verifyNode = (node: Node, paddingContext: PaddingContext): void => {
  *
  * See src/index.ts for examples of Config usage.
  */
-export const createRule = (configs: Config[]): Rule.RuleModule => ({
+export const createRule = (
+  configs: Config[],
+  deprecated: boolean = false,
+): Rule.RuleModule => ({
   meta: {
     fixable: 'whitespace',
+    deprecated,
   },
   create(context: Rule.RuleContext) {
     const paddingContext = {

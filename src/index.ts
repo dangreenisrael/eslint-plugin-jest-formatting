@@ -133,90 +133,115 @@ export const rules = {
   'padding-around-all': createRule(
     [].concat(...Object.keys(paddingConfigs).map(k => paddingConfigs[k])),
   ),
+
   // ===========================================================================
   // DEPRECATED
-  'padding-before-after-all-blocks': createRule([
-    {
-      paddingType: PaddingType.Always,
-      prevStatementType: StatementType.Any,
-      nextStatementType: StatementType.AfterAllToken,
-    },
-  ]),
+  'padding-before-after-all-blocks': createRule(
+    [
+      {
+        paddingType: PaddingType.Always,
+        prevStatementType: StatementType.Any,
+        nextStatementType: StatementType.AfterAllToken,
+      },
+    ],
+    true,
+  ),
   // DEPRECATED
-  'padding-before-after-each-blocks': createRule([
-    {
-      paddingType: PaddingType.Always,
-      prevStatementType: StatementType.Any,
-      nextStatementType: StatementType.AfterEachToken,
-    },
-  ]),
+  'padding-before-after-each-blocks': createRule(
+    [
+      {
+        paddingType: PaddingType.Always,
+        prevStatementType: StatementType.Any,
+        nextStatementType: StatementType.AfterEachToken,
+      },
+    ],
+    true,
+  ),
   // DEPRECATED
-  'padding-before-before-all-blocks': createRule([
-    {
-      paddingType: PaddingType.Always,
-      prevStatementType: StatementType.Any,
-      nextStatementType: StatementType.BeforeAllToken,
-    },
-  ]),
+  'padding-before-before-all-blocks': createRule(
+    [
+      {
+        paddingType: PaddingType.Always,
+        prevStatementType: StatementType.Any,
+        nextStatementType: StatementType.BeforeAllToken,
+      },
+    ],
+    true,
+  ),
   // DEPRECATED
-  'padding-before-before-each-blocks': createRule([
-    {
-      paddingType: PaddingType.Always,
-      prevStatementType: StatementType.Any,
-      nextStatementType: StatementType.BeforeEachToken,
-    },
-  ]),
+  'padding-before-before-each-blocks': createRule(
+    [
+      {
+        paddingType: PaddingType.Always,
+        prevStatementType: StatementType.Any,
+        nextStatementType: StatementType.BeforeEachToken,
+      },
+    ],
+    true,
+  ),
   // DEPRECATED
-  'padding-before-describe-blocks': createRule([
-    {
-      paddingType: PaddingType.Always,
-      prevStatementType: StatementType.Any,
-      nextStatementType: StatementType.DescribeToken,
-    },
-  ]),
+  'padding-before-describe-blocks': createRule(
+    [
+      {
+        paddingType: PaddingType.Always,
+        prevStatementType: StatementType.Any,
+        nextStatementType: StatementType.DescribeToken,
+      },
+    ],
+    true,
+  ),
   // DEPRECATED
-  'padding-before-expect-statements': createRule([
-    {
-      paddingType: PaddingType.Always,
-      prevStatementType: StatementType.Any,
-      nextStatementType: StatementType.ExpectToken,
-    },
-    {
-      paddingType: PaddingType.Any,
-      prevStatementType: StatementType.ExpectToken,
-      nextStatementType: StatementType.ExpectToken,
-    },
-  ]),
+  'padding-before-expect-statements': createRule(
+    [
+      {
+        paddingType: PaddingType.Always,
+        prevStatementType: StatementType.Any,
+        nextStatementType: StatementType.ExpectToken,
+      },
+      {
+        paddingType: PaddingType.Any,
+        prevStatementType: StatementType.ExpectToken,
+        nextStatementType: StatementType.ExpectToken,
+      },
+    ],
+    true,
+  ),
   // DEPRECATED
-  'padding-before-test-blocks': createRule([
-    {
-      paddingType: PaddingType.Always,
-      prevStatementType: StatementType.Any,
-      nextStatementType: [StatementType.TestToken, StatementType.ItToken],
-    },
-  ]),
+  'padding-before-test-blocks': createRule(
+    [
+      {
+        paddingType: PaddingType.Always,
+        prevStatementType: StatementType.Any,
+        nextStatementType: [StatementType.TestToken, StatementType.ItToken],
+      },
+    ],
+    true,
+  ),
   // DEPRECATED
-  'padding-before-all': createRule([
-    {
-      paddingType: PaddingType.Always,
-      prevStatementType: StatementType.Any,
-      nextStatementType: [
-        StatementType.AfterAllToken,
-        StatementType.AfterEachToken,
-        StatementType.BeforeAllToken,
-        StatementType.BeforeEachToken,
-        StatementType.DescribeToken,
-        StatementType.ExpectToken,
-        StatementType.ItToken,
-        StatementType.TestToken,
-      ],
-    },
-    {
-      paddingType: PaddingType.Any,
-      prevStatementType: StatementType.ExpectToken,
-      nextStatementType: StatementType.ExpectToken,
-    },
-  ]),
+  'padding-before-all': createRule(
+    [
+      {
+        paddingType: PaddingType.Always,
+        prevStatementType: StatementType.Any,
+        nextStatementType: [
+          StatementType.AfterAllToken,
+          StatementType.AfterEachToken,
+          StatementType.BeforeAllToken,
+          StatementType.BeforeEachToken,
+          StatementType.DescribeToken,
+          StatementType.ExpectToken,
+          StatementType.ItToken,
+          StatementType.TestToken,
+        ],
+      },
+      {
+        paddingType: PaddingType.Any,
+        prevStatementType: StatementType.ExpectToken,
+        nextStatementType: StatementType.ExpectToken,
+      },
+    ],
+    true,
+  ),
 };
 
 export const configs = {
