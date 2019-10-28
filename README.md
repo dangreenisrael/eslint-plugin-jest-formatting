@@ -73,6 +73,7 @@ We also support a "strict" settings which enabled all of the rules for you
 - [padding-around-expect-groups](docs/rules/padding-around-expect-groups.md)
 - [padding-around-describe-blocks](docs/rules/padding-around-describe-blocks.md)
 - [padding-around-test-blocks](docs/rules/padding-around-test-blocks.md)
+- [padding-around-all](docs/rules/padding-around-all.md)
 
 ### Deprecated
 
