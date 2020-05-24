@@ -156,6 +156,7 @@ ruleTester.run('padding-around-test-blocks', rule, {
           column: 1
         },
       ],
+      output: valid,
     },
   ],
 });

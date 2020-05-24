@@ -146,7 +146,8 @@ ruleTester.run('padding-around-describe-blocks', rule, {
           line: 27,
           column: 1
         },
-      ]
+      ],
+      output: valid,
     },
   ]
 });

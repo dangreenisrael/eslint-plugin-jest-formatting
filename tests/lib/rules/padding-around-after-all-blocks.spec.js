@@ -108,7 +108,8 @@ ruleTester.run('padding-before-after-all-blocks', rule, {
           line: 18,
           column: 3
         },
-      ]
+      ],
+      output: valid,
     },
   ]
 });
