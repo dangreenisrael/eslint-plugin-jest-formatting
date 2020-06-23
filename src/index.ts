@@ -131,7 +131,7 @@ export const rules = {
   'padding-around-expect-groups': createRule(paddingConfigs.expect),
   'padding-around-test-blocks': createRule(paddingConfigs.test),
   'padding-around-all': createRule(
-    [].concat(...Object.keys(paddingConfigs).map(k => paddingConfigs[k])),
+    [].concat(...Object.keys(paddingConfigs).map((k) => paddingConfigs[k])),
   ),
 
   // ===========================================================================

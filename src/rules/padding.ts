@@ -219,7 +219,7 @@ const nodeMatchesType = (
   // If it's an array recursively check if any of the statement types match
   // the node
   if (Array.isArray(statementType)) {
-    return statementType.some(type =>
+    return statementType.some((type) =>
       nodeMatchesType(innerStatementNode, type, paddingContext),
     );
   }
