@@ -138,7 +138,8 @@ ruleTester.run('padding-before-describe-blocks', rule, {
           line: 26,
           column: 1
         },
-      ]
+      ],
+      output: valid,
     },
   ]
 });

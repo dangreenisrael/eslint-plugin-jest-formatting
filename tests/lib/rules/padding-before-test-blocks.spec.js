@@ -148,6 +148,7 @@ ruleTester.run('padding-before-test-blocks', rule, {
           column: 1
         },
       ],
+      output: valid,
     },
   ],
 });

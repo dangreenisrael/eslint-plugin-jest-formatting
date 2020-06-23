@@ -132,7 +132,8 @@ ruleTester.run('padding-before-expect-statements', rule, {
           line: 30,
           column: 7
         },
-      ]
+      ],
+      output: valid,
     },
   ]
 });

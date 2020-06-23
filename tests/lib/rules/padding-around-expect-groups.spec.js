@@ -148,7 +148,8 @@ ruleTester.run('padding-around-expect-groups', rule, {
           line: 32,
           column: 7
         },
-      ]
+      ],
+      output: valid,
     },
   ]
 });

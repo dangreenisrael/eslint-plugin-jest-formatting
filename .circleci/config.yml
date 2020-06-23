@@ -7,7 +7,7 @@ version: 2
 defaults: &defaults
   working_directory: ~/repo
   docker:
-    - image: circleci/node:8.10.0
+    - image: circleci/node:10
 
 jobs:
   test:
@@ -28,7 +28,7 @@ jobs:
           command: yarn test
 
       - run: yarn lint
-      
+
       - save_cache:
           paths:
             - node_modules
