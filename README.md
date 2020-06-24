@@ -77,16 +77,6 @@ We also support a "strict" settings which enabled all of the rules for you
 - [padding-around-test-blocks](docs/rules/padding-around-test-blocks.md)
 - [padding-around-all](docs/rules/padding-around-all.md)
 
-### Deprecated
-
-- [padding-before-all](docs/rules/padding-before-all.md)
-- [padding-before-before-each-blocks](docs/rules/padding-before-before-each-blocks.md)
-- [padding-before-after-each-blocks](docs/rules/padding-before-after-each-blocks.md)
-- [padding-before-before-all-blocks](docs/rules/padding-before-before-all-blocks.md)
-- [padding-before-after-all-blocks](docs/rules/padding-before-after-all-blocks.md)
-- [padding-before-describe-blocks](docs/rules/padding-before-describe-blocks.md)
-- [padding-before-expect-statements](docs/rules/padding-before-expect-statements.md)
-- [padding-before-test-blocks](docs/rules/padding-before-test-blocks.md)
 ## Related Projects
 
 ### eslint-plugin-jest
