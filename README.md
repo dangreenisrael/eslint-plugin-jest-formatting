@@ -87,3 +87,10 @@ We also support a "strict" settings which enabled all of the rules for you
 - [padding-before-describe-blocks](docs/rules/padding-before-describe-blocks.md)
 - [padding-before-expect-statements](docs/rules/padding-before-expect-statements.md)
 - [padding-before-test-blocks](docs/rules/padding-before-test-blocks.md)
+## Related Projects
+
+### eslint-plugin-jest
+
+This provides an extensive set of jest eslint rules
+
+https://github.com/jest-community/eslint-plugin-jest
