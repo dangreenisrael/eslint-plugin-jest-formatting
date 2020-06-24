@@ -3,12 +3,13 @@
   "parserOptions": {
     "sourceType": "module"
   },
-  "plugins": ["jest-formatting", "jest"],
+  "plugins": ["jest-formatting", "jest", "@typescript-eslint/eslint-plugin"],
   "env": {
     "jest/globals": true
   },
   "extends": [
     "airbnb-base",
+    "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
     "plugin:jest-formatting/recommended"
   ],
