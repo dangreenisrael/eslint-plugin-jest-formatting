@@ -20,8 +20,8 @@
   "module": "src/index.ts",
   "scripts": {
     "pretty": "yarn prettier '**/*.*'",
-    "lint": "yarn build && yarn link-plugin && yarn pretty --check && yarn eslint . --ext .ts",
-    "format": "yarn build && yarn link-plugin && yarn pretty --write && yarn eslint --fix . --ext .ts",
+    "lint": "yarn build && yarn link-plugin && yarn pretty --check && yarn eslint --ext .ts,.js .",
+    "format": "yarn build && yarn link-plugin && yarn pretty --write && yarn eslint --fix --ext .ts,.js .",
     "build": "tsc",
     "test": "yarn build && jest",
     "link-plugin": "yarn link && yarn link eslint-plugin-jest-formatting"

@@ -9,6 +9,8 @@
  */
 
 import { AST, Rule, SourceCode } from 'eslint';
+// This is because we are using @types/estree that are brought in with eslint
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Node } from 'estree';
 import * as astUtils from '../ast-utils';
 

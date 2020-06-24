@@ -4,6 +4,8 @@
  * globs.
  */
 
+/* eslint-disable @typescript-eslint/no-empty-function */
+
 beforeAll(() => {});
 beforeEach(() => {});
 afterAll(() => {});
