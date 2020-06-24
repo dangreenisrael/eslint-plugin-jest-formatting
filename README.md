@@ -1,13 +1,15 @@
 [![CircleCI](https://circleci.com/gh/dangreenisrael/eslint-plugin-jest-formatting/tree/master.svg?style=svg)](https://circleci.com/gh/dangreenisrael/eslint-plugin-jest-formatting/tree/master)
 ![npm monthly downloads](https://img.shields.io/npm/dm/eslint-plugin-jest-formatting.svg)
 
-**_Note: The master version may not be the version deployed to npm. Please treat https://www.npmjs.com/package/eslint-plugin-jest-formatting as the cannonical source for docs._**
-
 # eslint-plugin-jest-formatting
+
+This package provides ESLint rules for jest test suites.
 
 This project aims to provide formatting rules (auto-fixable where possible) to ensure consistency and readability in jest test suites.
 
 Like this plugin? [Say thanks with a ⭐️](https://github.com/dangreenisrael/eslint-plugin-jest-formatting/stargazers)
+
+**_Note: The master version may not be the version deployed to npm. Please treat https://www.npmjs.com/package/eslint-plugin-jest-formatting as the cannonical source for docs._**
 
 ## Installation
 
