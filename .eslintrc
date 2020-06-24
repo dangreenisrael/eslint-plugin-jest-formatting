@@ -11,7 +11,8 @@
     "airbnb-base",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
-    "plugin:jest-formatting/recommended"
+    "plugin:jest-formatting/recommended",
+    "plugin:import/typescript"
   ],
   "overrides": [
     {
@@ -19,7 +20,15 @@
       "rules": {
         "camelcase": "off",
         "no-plusplus": "off",
+        "import/extensions": "off"
       }
     }
-  ]
+  ],
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true // Without this `@types/estree` `estree` isn't actually in our node_modules.
+      }
+    }
+  }
 }
