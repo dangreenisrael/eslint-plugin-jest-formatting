@@ -314,7 +314,7 @@ const verifyNode = (node: Node, paddingContext: PaddingContext): void => {
  */
 export const createRule = (
   configs: Config[],
-  deprecated: boolean = false,
+  deprecated = false,
 ): Rule.RuleModule => ({
   meta: {
     fixable: 'whitespace',
