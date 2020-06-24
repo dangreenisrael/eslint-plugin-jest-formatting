@@ -17,7 +17,8 @@
     {
       "files": ["**.*"],
       "rules": {
-        "camelcase": "off"
+        "camelcase": "off",
+        "no-plusplus": "off",
       }
     }
   ]
