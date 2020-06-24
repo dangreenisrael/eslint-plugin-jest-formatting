@@ -9,6 +9,8 @@
  */
 
 import { AST, Rule, SourceCode } from 'eslint';
+// This is because we are using @types/estree that are brought in with eslint
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Node } from 'estree';
 import * as astUtils from '../ast-utils';
 
@@ -271,8 +273,8 @@ const verifyNode = (node: Node, paddingContext: PaddingContext): void => {
   //  ESTree.Node doesn't support the parent property which is added by
   //  ESLint during traversal. Our best bet is to ignore the property access
   //  here as it's the only place that it's checked.
-  // @ts-ignore
-  if (!astUtils.isValidParent(node.parent.type)) {
+  //  eslint-disable-next-line @typescript-eslint/no-explicit-any
+  if (!astUtils.isValidParent((node as any).parent.type)) {
     return;
   }
 
@@ -314,7 +316,7 @@ const verifyNode = (node: Node, paddingContext: PaddingContext): void => {
  */
 export const createRule = (
   configs: Config[],
-  deprecated: boolean = false,
+  deprecated = false,
 ): Rule.RuleModule => ({
   meta: {
     fixable: 'whitespace',

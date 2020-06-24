@@ -20,8 +20,8 @@
   "module": "src/index.ts",
   "scripts": {
     "pretty": "yarn prettier '**/*.*'",
-    "lint": "yarn build && yarn link-plugin && yarn pretty --check && yarn eslint .",
-    "format": "yarn build && yarn link-plugin && yarn pretty --write && yarn eslint --fix .",
+    "lint": "yarn build && yarn link-plugin && yarn pretty --check && yarn eslint --ext .ts,.js .",
+    "format": "yarn build && yarn link-plugin && yarn pretty --write && yarn eslint --fix --ext .ts,.js .",
     "build": "tsc",
     "test": "yarn build && jest",
     "link-plugin": "yarn link && yarn link eslint-plugin-jest-formatting"
@@ -33,10 +33,12 @@
     "@types/eslint": "^7.2.0",
     "@types/jest": "^26.0.0",
     "@types/node": "^14.0.13",
+    "@typescript-eslint/eslint-plugin": "^3.4.0",
     "@typescript-eslint/parser": "^3.4.0",
     "eslint": "^7.3.1",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-config-prettier": "^6.11.0",
+    "eslint-import-resolver-typescript": "^2.0.0",
     "eslint-plugin-import": "^2.21.2",
     "eslint-plugin-jest": "^23.17.1",
     "eslint-plugin-jest-formatting": "file:.",
