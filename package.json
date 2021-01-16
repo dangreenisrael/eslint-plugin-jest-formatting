@@ -1,7 +1,7 @@
 {
   "name": "eslint-plugin-jest-formatting",
-  "version": "2.0.0",
-  "description": "Formatting rules for jest tests",
+  "version": "2.0.1",
+  "description": "ESLint rules for formatting jest tests",
   "keywords": [
     "eslint",
     "eslintplugin",
