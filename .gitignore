@@ -1,2 +1,8 @@
 /node_modules
 /lib
+
+# NVM users can add a local copy of .nvmrc if they want the auto-switching
+# behavior that NVM can provide. We'll ignore it at the project level because
+# we don't have a specific version requirement for dev besides what's listed
+# in package.json engines.
+/.nvmrc
