@@ -11,7 +11,7 @@ const rule = require('../../../lib').rules['padding-around-expect-groups'];
 
 const ruleTester = new RuleTester({
   parserOptions: {
-    ecmaVersion: 6,
+    ecmaVersion: 2017,
   },
 });
 
@@ -63,6 +63,29 @@ describe('someText', () => {
     });
   });
 });
+
+test('awaited expect', async () => {
+  const abc = 123;
+  const hasAPromise = () => Promise.resolve('foo');
+
+  await expect(hasAPromise()).resolves.toEqual('foo');
+  expect(abc).toEqual(123);
+
+  const efg = 456;
+
+  expect(123).toEqual(abc);
+  await expect(hasAPromise()).resolves.toEqual('foo');
+
+  const hij = 789;
+
+  await expect(hasAPromise()).resolves.toEqual('foo');
+  await expect(hasAPromise()).resolves.toEqual('foo');
+
+  const somethingElseAsync = () => Promise.resolve('bar');
+  await somethingElseAsync();
+
+  await expect(hasAPromise()).resolves.toEqual('foo');
+});
 `;
 
 const invalid = `
@@ -103,6 +126,25 @@ describe('someText', () => {
     });
   });
 });
+
+test('awaited expect', async () => {
+  const abc = 123;
+  const hasAPromise = () => Promise.resolve('foo');
+  await expect(hasAPromise()).resolves.toEqual('foo');
+  expect(abc).toEqual(123);
+
+  const efg = 456;
+  expect(123).toEqual(abc);
+  await expect(hasAPromise()).resolves.toEqual('foo');
+
+  const hij = 789;
+  await expect(hasAPromise()).resolves.toEqual('foo');
+  await expect(hasAPromise()).resolves.toEqual('foo');
+
+  const somethingElseAsync = () => Promise.resolve('bar');
+  await somethingElseAsync();
+  await expect(hasAPromise()).resolves.toEqual('foo');
+});
 `;
 
 ruleTester.run('padding-around-expect-groups', rule, {
@@ -111,7 +153,7 @@ ruleTester.run('padding-around-expect-groups', rule, {
     {
       code: invalid,
       filename: 'src/component.test.jsx',
-      errors: 6,
+      errors: 10,
       output: valid,
     },
     {
@@ -147,6 +189,26 @@ ruleTester.run('padding-around-expect-groups', rule, {
           message: 'Expected blank line before this statement.',
           line: 32,
           column: 7
+        },
+        {
+          message: 'Expected blank line before this statement.',
+          line: 43,
+          column: 3
+        },
+        {
+          message: 'Expected blank line before this statement.',
+          line: 47,
+          column: 3
+        },
+        {
+          message: 'Expected blank line before this statement.',
+          line: 51,
+          column: 3
+        },
+        {
+          message: 'Expected blank line before this statement.',
+          line: 56,
+          column: 3
         },
       ],
       output: valid,

@@ -79,13 +79,20 @@ interface PaddingContext {
 // Creates a StatementTester to test an ExpressionStatement's first token name
 const createTokenTester = (tokenName: string): StatementTester => {
   return (node: Node, sourceCode: SourceCode): boolean => {
-    const token = sourceCode.getFirstToken(node);
+    let activeNode = node;
 
-    return (
-      node.type === 'ExpressionStatement' &&
-      token.type === 'Identifier' &&
-      token.value === tokenName
-    );
+    if (activeNode.type === 'ExpressionStatement') {
+      // In the case of `await`, we actually care about its argument
+      if (activeNode.expression.type === 'AwaitExpression') {
+        activeNode = activeNode.expression.argument;
+      }
+
+      const token = sourceCode.getFirstToken(activeNode);
+
+      return token.type === 'Identifier' && token.value === tokenName;
+    }
+
+    return false;
   };
 };
 

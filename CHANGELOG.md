@@ -1,5 +1,11 @@
 # Changelog
 
+## v3.0.0 - May 4, 2021
+
+### Breaking Changes
+
+- Padding is no longer enforced between statements and `await`ed statements of the same kind.
+
 ## v1.1.0 - August 14, 2019
 
 ### Changed
