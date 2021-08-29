@@ -66,7 +66,9 @@ export const getPaddingLineSequences = (
 
   if (nextNode.loc.start.line - prevToken.loc.end.line >= 2) {
     do {
-      const token = sourceCode.getTokenAfter(prevToken, { includeComments });
+      const token = sourceCode.getTokenAfter(prevToken, {
+        includeComments,
+      }) as AST.Token;
 
       if (token.loc.start.line - prevToken.loc.end.line >= 2) {
         pairs.push([prevToken, token]);
