@@ -20,7 +20,9 @@
       "rules": {
         "camelcase": "off",
         "no-plusplus": "off",
-        "import/extensions": "off"
+        "import/extensions": "off",
+        "no-shadow": "off",
+        "@typescript-eslint/no-shadow": "error"
       }
     }
   ],

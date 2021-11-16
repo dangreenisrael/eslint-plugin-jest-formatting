@@ -42,25 +42,11 @@ export const enum PaddingType {
   Always,
 }
 
-type PaddingTester = (
-  prevNode: Node,
-  nextNode: Node,
-  paddingContext: PaddingContext,
-) => void;
-
 // A configuration object for padding type and the two statement types
 export interface Config {
   paddingType: PaddingType;
   prevStatementType: StatementTypes;
   nextStatementType: StatementTypes;
-}
-
-// Tracks position in scope and prevNode. Used to compare current and prev node
-// and then to walk back up to the parent scope or down into the next one.
-// And so on...
-interface Scope {
-  upper: Scope | null;
-  prevNode: Node | null;
 }
 
 interface ScopeInfo {
@@ -74,6 +60,20 @@ interface PaddingContext {
   sourceCode: SourceCode;
   scopeInfo: ScopeInfo;
   configs: Config[];
+}
+
+type PaddingTester = (
+  prevNode: Node,
+  nextNode: Node,
+  paddingContext: PaddingContext,
+) => void;
+
+// Tracks position in scope and prevNode. Used to compare current and prev node
+// and then to walk back up to the parent scope or down into the next one.
+// And so on...
+interface Scope {
+  upper: Scope | null;
+  prevNode: Node | null;
 }
 
 // Creates a StatementTester to test an ExpressionStatement's first token name
@@ -143,35 +143,34 @@ const paddingAlwaysTester = (
     message: 'Expected blank line before this statement.',
     fix(fixer: Rule.RuleFixer): Rule.Fix {
       let prevToken = astUtils.getActualLastToken(sourceCode, prevNode);
-      const nextToken =
-        sourceCode.getFirstTokenBetween(prevToken, nextNode, {
-          includeComments: true,
-          /**
-           * Skip the trailing comments of the previous node.
-           * This inserts a blank line after the last trailing comment.
-           *
-           * For example:
-           *
-           *     foo(); // trailing comment.
-           *     // comment.
-           *     bar();
-           *
-           * Get fixed to:
-           *
-           *     foo(); // trailing comment.
-           *
-           *     // comment.
-           *     bar();
-           */
-          filter(token: AST.Token): boolean {
-            if (astUtils.areTokensOnSameLine(prevToken, token)) {
-              prevToken = token;
-              return false;
-            }
+      const nextToken = (sourceCode.getFirstTokenBetween(prevToken, nextNode, {
+        includeComments: true,
+        /**
+         * Skip the trailing comments of the previous node.
+         * This inserts a blank line after the last trailing comment.
+         *
+         * For example:
+         *
+         *     foo(); // trailing comment.
+         *     // comment.
+         *     bar();
+         *
+         * Get fixed to:
+         *
+         *     foo(); // trailing comment.
+         *
+         *     // comment.
+         *     bar();
+         */
+        filter(token: AST.Token): boolean {
+          if (astUtils.areTokensOnSameLine(prevToken, token)) {
+            prevToken = token;
+            return false;
+          }
 
-            return true;
-          },
-        }) || nextNode;
+          return true;
+        },
+      }) || nextNode) as AST.Token;
 
       const insertText = astUtils.areTokensOnSameLine(prevToken, nextToken)
         ? '\n\n'
