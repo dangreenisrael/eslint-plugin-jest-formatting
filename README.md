@@ -16,13 +16,13 @@ Like this plugin? [Say thanks with a ⭐️](https://github.com/dangreenisrael/e
 You'll first need to install [ESLint](http://eslint.org):
 
 ```
-$ yarn add eslint --dev
+yarn add eslint --dev
 ```
 
 Next, install `eslint-plugin-jest-formatting`:
 
 ```
-$ yarn add eslint-plugin-jest-formatting --dev
+yarn add eslint-plugin-jest-formatting --dev
 ```
 
 **Note:** If you installed ESLint globally (using the `-g` flag) then you must also install `eslint-plugin-jest-formatting` globally.
