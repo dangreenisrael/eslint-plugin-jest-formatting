@@ -9,20 +9,20 @@ This project aims to provide formatting rules (auto-fixable where possible) to e
 
 Like this plugin? [Say thanks with a ⭐️](https://github.com/dangreenisrael/eslint-plugin-jest-formatting/stargazers)
 
-**_Note: The master version may not be the version deployed to npm. Please treat https://www.npmjs.com/package/eslint-plugin-jest-formatting as the cannonical source for docs._**
+**_Note: The master version may not be the version deployed to npm. Please treat <https://www.npmjs.com/package/eslint-plugin-jest-formatting> as the cannonical source for docs._**
 
 ## Installation
 
 You'll first need to install [ESLint](http://eslint.org):
 
-```
-$ yarn add eslint --dev
+```sh
+yarn add eslint --dev
 ```
 
 Next, install `eslint-plugin-jest-formatting`:
 
-```
-$ yarn add eslint-plugin-jest-formatting --dev
+```sh
+yarn add eslint-plugin-jest-formatting --dev
 ```
 
 **Note:** If you installed ESLint globally (using the `-g` flag) then you must also install `eslint-plugin-jest-formatting` globally.
@@ -68,14 +68,25 @@ We also support a "strict" settings which enabled all of the rules for you
 
 ## Rule Documentation
 
-- [padding-around-after-all-blocks](docs/rules/padding-around-after-all-blocks.md)
-- [padding-around-after-each-blocks](docs/rules/padding-around-after-each-blocks.md)
-- [padding-around-before-all-blocks](docs/rules/padding-around-before-all-blocks.md)
-- [padding-around-before-each-blocks](docs/rules/padding-around-before-each-blocks.md)
-- [padding-around-expect-groups](docs/rules/padding-around-expect-groups.md)
-- [padding-around-describe-blocks](docs/rules/padding-around-describe-blocks.md)
-- [padding-around-test-blocks](docs/rules/padding-around-test-blocks.md)
-- [padding-around-all](docs/rules/padding-around-all.md)
+<!-- begin auto-generated rules list -->
+
+💼 Configurations enabled in.\
+✅ Set in the `recommended` configuration.\
+🔒 Set in the `strict` configuration.\
+🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).
+
+| Name                                                                                 | 💼  | 🔧  |
+| :----------------------------------------------------------------------------------- | :-- | :-- |
+| [padding-around-after-all-blocks](docs/rules/padding-around-after-all-blocks.md)     | ✅  | 🔧  |
+| [padding-around-after-each-blocks](docs/rules/padding-around-after-each-blocks.md)   | ✅  | 🔧  |
+| [padding-around-all](docs/rules/padding-around-all.md)                               | 🔒  | 🔧  |
+| [padding-around-before-all-blocks](docs/rules/padding-around-before-all-blocks.md)   | ✅  | 🔧  |
+| [padding-around-before-each-blocks](docs/rules/padding-around-before-each-blocks.md) | ✅  | 🔧  |
+| [padding-around-describe-blocks](docs/rules/padding-around-describe-blocks.md)       | ✅  | 🔧  |
+| [padding-around-expect-groups](docs/rules/padding-around-expect-groups.md)           |     | 🔧  |
+| [padding-around-test-blocks](docs/rules/padding-around-test-blocks.md)               | ✅  | 🔧  |
+
+<!-- end auto-generated rules list -->
 
 ## Related Projects
 
@@ -83,4 +94,4 @@ We also support a "strict" settings which enabled all of the rules for you
 
 This provides an extensive set of jest eslint rules
 
-https://github.com/jest-community/eslint-plugin-jest
+<https://github.com/jest-community/eslint-plugin-jest>
