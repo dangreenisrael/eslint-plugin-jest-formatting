@@ -70,7 +70,7 @@ describe('someText', () => {
 });
 `;
 
-ruleTester.run('padding-before-before-all-blocks', rule, {
+ruleTester.run('padding-around-before-all-blocks', rule, {
   valid: [valid],
   invalid: [
     {

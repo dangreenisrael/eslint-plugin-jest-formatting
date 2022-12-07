@@ -68,7 +68,7 @@ describe('someText', () => {
 });
 `;
 
-ruleTester.run('padding-before-after-each-blocks', rule, {
+ruleTester.run('padding-around-after-each-blocks', rule, {
   valid: [valid],
   invalid: [
     {
