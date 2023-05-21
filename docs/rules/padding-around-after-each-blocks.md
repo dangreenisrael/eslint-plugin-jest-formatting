@@ -1,5 +1,11 @@
 # padding-around-after-each-blocks
 
+💼 This rule is enabled in the ✅ `recommended` config.
+
+🔧 This rule is automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/latest/user-guide/command-line-interface#--fix).
+
+<!-- end auto-generated rule header -->
+
 ## Rule Details
 
 This rule enforces a line of padding before _and_ after 1 or more `afterEach` statements.

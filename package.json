@@ -20,11 +20,13 @@
   "module": "src/index.ts",
   "scripts": {
     "pretty": "yarn prettier '**/*.*'",
-    "lint": "yarn build && yarn link-plugin && yarn pretty --check && yarn eslint --ext .ts,.js .",
+    "lint": "yarn build && yarn link-plugin && yarn pretty --check && yarn eslint --ext .ts,.js . && yarn lint:eslint-docs",
+    "lint:eslint-docs": "yarn update:eslint-docs && git diff --exit-code",
     "format": "yarn build && yarn link-plugin && yarn pretty --write && yarn eslint --fix --ext .ts,.js .",
     "build": "tsc",
     "test": "yarn build && jest",
-    "link-plugin": "yarn link && yarn link eslint-plugin-jest-formatting"
+    "link-plugin": "yarn link && yarn link eslint-plugin-jest-formatting",
+    "update:eslint-docs": "yarn build && eslint-doc-generator --rule-doc-title-format name && yarn format"
   },
   "peerDependencies": {
     "eslint": ">=0.8.0"
@@ -38,6 +40,7 @@
     "eslint": "^8.2.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-doc-generator": "^1.4.3",
     "eslint-import-resolver-typescript": "^2.5.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jest": "^25.2.4",
@@ -45,8 +48,8 @@
     "eslint-plugin-prettier": "^4.0.0",
     "jest": "^27.3.1",
     "prettier": "2.4.1",
-    "typescript": "^4.4.4",
-    "ts-jest": "^27.0.7"
+    "ts-jest": "^27.0.7",
+    "typescript": "^4.4.4"
   },
   "engines": {
     "node": "^12.22.0 || ^14.17.0 || >=16.0.0"

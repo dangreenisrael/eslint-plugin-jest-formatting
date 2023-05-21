@@ -21,13 +21,12 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: yarn
+      # TODO: Use --ignore-engines so we can install dev-dependencies which don't support Node 12. Remove this option after we drop Node 12 support.
+      - run: yarn install --frozen-lockfile --ignore-engines
 
       - run:
           name: Run tests
           command: yarn test
-
-      - run: yarn lint
 
       - save_cache:
           paths:
@@ -37,6 +36,28 @@ jobs:
       - persist_to_workspace:
           root: ~/repo
           paths: .
+
+  lint:
+    working_directory: ~/repo
+    docker:
+      ## Linting should run on the latest Node.
+      - image: circleci/node:18
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      # TODO: Use --ignore-engines so we can install dev-dependencies which don't support Node 12. Remove this option after we drop Node 12 support.
+      - run: yarn install --frozen-lockfile --ignore-engines
+
+      - run:
+          name: Run lint
+          command: yarn lint
+
   deploy:
     <<: *defaults
     steps:
