@@ -47,6 +47,7 @@ export interface Config {
   paddingType: PaddingType;
   prevStatementType: StatementTypes;
   nextStatementType: StatementTypes;
+  lineCount?: number;
 }
 
 interface ScopeInfo {
@@ -66,6 +67,7 @@ type PaddingTester = (
   prevNode: Node,
   nextNode: Node,
   paddingContext: PaddingContext,
+  lineCount?: number,
 ) => void;
 
 // Tracks position in scope and prevNode. Used to compare current and prev node
@@ -124,6 +126,7 @@ const paddingAlwaysTester = (
   prevNode: Node,
   nextNode: Node,
   paddingContext: PaddingContext,
+  lineCount?: number,
 ): void => {
   const { sourceCode, ruleContext } = paddingContext;
   const paddingLines = astUtils.getPaddingLineSequences(
@@ -134,13 +137,22 @@ const paddingAlwaysTester = (
 
   // We've got some padding lines. Great.
   if (paddingLines.length > 0) {
-    return;
+    if (typeof lineCount !== 'number') {
+      // no explicit line count give, should be fine then
+      return;
+    }
+    const lineDistance =
+      paddingLines[0][1].loc.start.line - paddingLines[0][0].loc.end.line - 1;
+    if (lineDistance === lineCount) {
+      // The padding lines are the same as the given line count
+      return;
+    }
   }
 
   // Missing padding line
   ruleContext.report({
     node: nextNode,
-    message: 'Expected blank line before this statement.',
+    message: `Expected ${lineCount || 'blank'} lines before this statement.`,
     fix(fixer: Rule.RuleFixer): Rule.Fix {
       let prevToken = astUtils.getActualLastToken(sourceCode, prevNode);
       const nextToken = (sourceCode.getFirstTokenBetween(prevToken, nextNode, {
@@ -246,21 +258,22 @@ const testPadding = (
 ): void => {
   const { configs } = paddingContext;
 
-  const testType = (type: PaddingType) =>
-    paddingTesters[type](prevNode, nextNode, paddingContext);
+  const testType = (type: PaddingType, lineCount?: number) =>
+    paddingTesters[type](prevNode, nextNode, paddingContext, lineCount);
 
   for (let i = configs.length - 1; i >= 0; --i) {
     const {
       prevStatementType: prevType,
       nextStatementType: nextType,
       paddingType,
+      lineCount,
     } = configs[i];
 
     if (
       nodeMatchesType(prevNode, prevType, paddingContext) &&
       nodeMatchesType(nextNode, nextType, paddingContext)
     ) {
-      return testType(paddingType);
+      return testType(paddingType, lineCount);
     }
   }
 
