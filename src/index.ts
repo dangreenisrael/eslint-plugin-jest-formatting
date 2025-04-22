@@ -122,6 +122,46 @@ const paddingConfigs: { [name: string]: Config[] } = {
   ],
 };
 
+const betweenConfigs: { [name: string]: Config[] } = {
+  describe: [
+    {
+      // padding describe to describe
+      paddingType: PaddingType.Always,
+      prevStatementType: [
+        StatementType.DescribeToken,
+        StatementType.FdescribeToken,
+        StatementType.XdescribeToken,
+      ],
+      nextStatementType: [
+        StatementType.DescribeToken,
+        StatementType.FdescribeToken,
+        StatementType.XdescribeToken,
+      ],
+      lineCount: 2,
+    },
+  ],
+  test: [
+    {
+      paddingType: PaddingType.Always,
+      prevStatementType: [
+        StatementType.TestToken,
+        StatementType.ItToken,
+        StatementType.FitToken,
+        StatementType.XitToken,
+        StatementType.XtestToken,
+      ],
+      nextStatementType: [
+        StatementType.TestToken,
+        StatementType.ItToken,
+        StatementType.FitToken,
+        StatementType.XitToken,
+        StatementType.XtestToken,
+      ],
+      lineCount: 2,
+    },
+  ],
+};
+
 export const rules = {
   'padding-around-after-all-blocks': createRule(paddingConfigs.afterAll),
   'padding-around-after-each-blocks': createRule(paddingConfigs.afterEach),
@@ -133,6 +173,8 @@ export const rules = {
   'padding-around-all': createRule(
     [].concat(...Object.keys(paddingConfigs).map((k) => paddingConfigs[k])),
   ),
+  'padding-between-describe-blocks': createRule(betweenConfigs.describe),
+  'padding-between-test-blocks': createRule(betweenConfigs.test),
 };
 
 export const configs = {
