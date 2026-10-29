@@ -29,6 +29,35 @@ $ yarn add eslint-plugin-jest-formatting --dev
 
 ## Usage
 
+### Flat config (ESLint 9+, `eslint.config.js`)
+
+```js
+import jestFormatting from 'eslint-plugin-jest-formatting';
+
+export default [
+  // ...your other config objects
+  jestFormatting.configs['flat/recommended'],
+];
+```
+
+`flat/strict` enables every rule via `padding-around-all`. The flat configs do not set `files`, so the rules run on every file ESLint already lints. To scope them to test files, spread the config into your own object (name the extensions explicitly: in flat config a `files` glob opts matching files into linting, and a bare `**/*.test.*` would also match Jest snapshot files):
+
+```js
+export default [
+  {
+    files: [
+      '**/*.{test,spec}.{js,jsx,mjs,cjs,ts,tsx}',
+      '**/__tests__/**/*.{js,jsx,mjs,cjs,ts,tsx}',
+    ],
+    ...jestFormatting.configs['flat/recommended'],
+  },
+];
+```
+
+With CommonJS use `const jestFormatting = require('eslint-plugin-jest-formatting');`.
+
+### Legacy config (`.eslintrc`)
+
 Add `jest-formatting` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
 
 ```json
