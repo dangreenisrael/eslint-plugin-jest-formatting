@@ -107,42 +107,50 @@ ruleTester.run('padding-around-describe-blocks', rule, {
       filename: 'src/component.test.js',
       errors: [
         {
-          message: 'Expected blank line before this statement.',
+          messageId: 'missingPaddingBefore',
+          data: { token: 'describe' },
           line: 11,
           column: 1
         },
         {
-          message: 'Expected blank line before this statement.',
+          messageId: 'missingPaddingAfter',
+          data: { token: 'describe' },
           line: 14,
           column: 3
         },
         {
-          message: 'Expected blank line before this statement.',
+          messageId: 'missingPaddingAfter',
+          data: { token: 'describe' },
           line: 17,
           column: 1
         },
         {
-          message: 'Expected blank line before this statement.',
+          messageId: 'missingPaddingBefore',
+          data: { token: 'describe' },
           line: 21,
           column: 5
         },
         {
-          message: 'Expected blank line before this statement.',
+          messageId: 'missingPaddingAfter',
+          data: { token: 'xdescribe' },
           line: 24,
           column: 4
         },
         {
-          message: 'Expected blank line before this statement.',
+          messageId: 'missingPaddingAfter',
+          data: { token: 'fdescribe' },
           line: 25,
           column: 1
         },
         {
-          message: 'Expected blank line before this statement.',
+          messageId: 'missingPaddingAfter',
+          data: { token: 'describe' },
           line: 26,
           column: 1
         },
         {
-          message: 'Expected blank line before this statement.',
+          messageId: 'missingPaddingBefore',
+          data: { token: 'describe' },
           line: 27,
           column: 1
         },

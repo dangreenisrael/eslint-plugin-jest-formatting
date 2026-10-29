@@ -66,6 +66,7 @@ type PaddingTester = (
   prevNode: Node,
   nextNode: Node,
   paddingContext: PaddingContext,
+  config?: Config,
 ) => void;
 
 // Tracks position in scope and prevNode. Used to compare current and prev node
@@ -76,25 +77,61 @@ interface Scope {
   prevNode: Node | null;
 }
 
+/**
+ * Gets the identifier that starts the given statement, e.g. 'describe' for
+ * `describe('x', () => {})` or 'expect' for `await expect(y).resolves...`.
+ * Returns null for anything that is not an expression statement starting
+ * with an identifier. Used both to match statements and to name the Jest
+ * call in rule messages.
+ */
+export const getStatementToken = (
+  node: Node,
+  sourceCode: SourceCode,
+): string | null => {
+  let activeNode = node;
+
+  // Dig into LabeledStatement body until it's not that anymore
+  while (activeNode.type === 'LabeledStatement') {
+    activeNode = activeNode.body;
+  }
+
+  if (activeNode.type === 'ExpressionStatement') {
+    // In the case of `await`, we actually care about its argument
+    const expression =
+      activeNode.expression.type === 'AwaitExpression'
+        ? activeNode.expression.argument
+        : activeNode;
+
+    const token = sourceCode.getFirstToken(expression);
+
+    return token.type === 'Identifier' ? token.value : null;
+  }
+
+  return null;
+};
+
 // Creates a StatementTester to test an ExpressionStatement's first token name
 const createTokenTester = (tokenName: string): StatementTester => {
-  return (node: Node, sourceCode: SourceCode): boolean => {
-    let activeNode = node;
-
-    if (activeNode.type === 'ExpressionStatement') {
-      // In the case of `await`, we actually care about its argument
-      if (activeNode.expression.type === 'AwaitExpression') {
-        activeNode = activeNode.expression.argument;
-      }
-
-      const token = sourceCode.getFirstToken(activeNode);
-
-      return token.type === 'Identifier' && token.value === tokenName;
-    }
-
-    return false;
-  };
+  return (node: Node, sourceCode: SourceCode): boolean =>
+    getStatementToken(node, sourceCode) === tokenName;
 };
+
+/**
+ * Rule messages. One message per situation rather than per rule: the rules
+ * differ only in which Jest calls they watch, so every rule reports in the
+ * same words. `{{token}}` is the Jest identifier that matched, e.g. 'describe',
+ * 'xit', 'expect'. Each message states what is wrong, the expected form, and
+ * the fix, so an agent can act on it without opening the docs.
+ */
+export const messages = {
+  missingPaddingBefore:
+    'Missing blank line before `{{token}}`. Expected at least one blank line between the previous statement and this `{{token}}` call. Fix: insert an empty line above it (autofixable with --fix).',
+  missingPaddingAfter:
+    'Missing blank line after `{{token}}`. Expected at least one blank line between the `{{token}}` call above and this statement. Fix: insert an empty line between them (autofixable with --fix).',
+};
+
+export const DOCS_BASE_URL =
+  'https://github.com/dangreenisrael/eslint-plugin-jest-formatting/blob/master/docs/rules';
 
 // A mapping of StatementType to StatementTester for... testing statements
 const statementTesters: { [T in StatementType]: StatementTester } = {
@@ -124,6 +161,7 @@ const paddingAlwaysTester = (
   prevNode: Node,
   nextNode: Node,
   paddingContext: PaddingContext,
+  config?: Config,
 ): void => {
   const { sourceCode, ruleContext } = paddingContext;
   const paddingLines = astUtils.getPaddingLineSequences(
@@ -137,10 +175,18 @@ const paddingAlwaysTester = (
     return;
   }
 
-  // Missing padding line
+  // Missing padding line. The report always sits on `nextNode`; the message
+  // names whichever of the two statements is the Jest call the config matched.
+  const nextIsJestCall =
+    config !== undefined && config.nextStatementType !== StatementType.Any;
+  const tokenNode = nextIsJestCall ? nextNode : prevNode;
+
   ruleContext.report({
     node: nextNode,
-    message: 'Expected blank line before this statement.',
+    messageId: nextIsJestCall ? 'missingPaddingBefore' : 'missingPaddingAfter',
+    data: {
+      token: getStatementToken(tokenNode, sourceCode) || 'statement',
+    },
     fix(fixer: Rule.RuleFixer): Rule.Fix {
       let prevToken = astUtils.getActualLastToken(sourceCode, prevNode);
       const nextToken = (sourceCode.getFirstTokenBetween(prevToken, nextNode, {
@@ -246,21 +292,22 @@ const testPadding = (
 ): void => {
   const { configs } = paddingContext;
 
-  const testType = (type: PaddingType) =>
-    paddingTesters[type](prevNode, nextNode, paddingContext);
+  const testType = (type: PaddingType, config?: Config) =>
+    paddingTesters[type](prevNode, nextNode, paddingContext, config);
 
   for (let i = configs.length - 1; i >= 0; --i) {
+    const config = configs[i];
     const {
       prevStatementType: prevType,
       nextStatementType: nextType,
       paddingType,
-    } = configs[i];
+    } = config;
 
     if (
       nodeMatchesType(prevNode, prevType, paddingContext) &&
       nodeMatchesType(nextNode, nextType, paddingContext)
     ) {
-      return testType(paddingType);
+      return testType(paddingType, config);
     }
   }
 
@@ -318,14 +365,32 @@ const verifyNode = (node: Node, paddingContext: PaddingContext): void => {
  * statement types. If they match then the specified padding type is
  * tested/enforced.
  *
- * See src/index.ts for examples of Config usage.
+ * See src/index.ts for the rule table that feeds this factory.
  */
-export const createRule = (
-  configs: Config[],
+export interface RuleOptions {
+  /** Rule name without the plugin prefix, e.g. 'padding-around-describe-blocks' */
+  name: string;
+  /** One-sentence description for meta.docs.description */
+  description: string;
+  configs: Config[];
+  deprecated?: boolean;
+}
+
+export const createRule = ({
+  name,
+  description,
+  configs,
   deprecated = false,
-): Rule.RuleModule => ({
+}: RuleOptions): Rule.RuleModule => ({
   meta: {
+    type: 'layout',
+    docs: {
+      description,
+      url: `${DOCS_BASE_URL}/${name}.md`,
+    },
     fixable: 'whitespace',
+    messages,
+    schema: [],
     deprecated,
   },
   create(context: Rule.RuleContext) {

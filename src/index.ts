@@ -131,18 +131,53 @@ const paddingConfigs: { [name: string]: Config[] } = {
   ],
 };
 
-const rules: { [name: string]: Rule.RuleModule } = {
-  'padding-around-after-all-blocks': createRule(paddingConfigs.afterAll),
-  'padding-around-after-each-blocks': createRule(paddingConfigs.afterEach),
-  'padding-around-before-all-blocks': createRule(paddingConfigs.beforeAll),
-  'padding-around-before-each-blocks': createRule(paddingConfigs.beforeEach),
-  'padding-around-describe-blocks': createRule(paddingConfigs.describe),
-  'padding-around-expect-groups': createRule(paddingConfigs.expect),
-  'padding-around-test-blocks': createRule(paddingConfigs.test),
-  'padding-around-all': createRule(
-    [].concat(...Object.keys(paddingConfigs).map((k) => paddingConfigs[k])),
-  ),
+// Rule table: name, one-sentence description (meta.docs.description), and the
+// padding configs that drive it. Order here is the order of `plugin.rules`.
+const ruleDefinitions: {
+  [name: string]: { description: string; configs: Config[] };
+} = {
+  'padding-around-after-all-blocks': {
+    description: 'Enforce padding around `afterAll` blocks',
+    configs: paddingConfigs.afterAll,
+  },
+  'padding-around-after-each-blocks': {
+    description: 'Enforce padding around `afterEach` blocks',
+    configs: paddingConfigs.afterEach,
+  },
+  'padding-around-before-all-blocks': {
+    description: 'Enforce padding around `beforeAll` blocks',
+    configs: paddingConfigs.beforeAll,
+  },
+  'padding-around-before-each-blocks': {
+    description: 'Enforce padding around `beforeEach` blocks',
+    configs: paddingConfigs.beforeEach,
+  },
+  'padding-around-describe-blocks': {
+    description: 'Enforce padding around `describe` blocks',
+    configs: paddingConfigs.describe,
+  },
+  'padding-around-expect-groups': {
+    description: 'Enforce padding around groups of `expect` statements',
+    configs: paddingConfigs.expect,
+  },
+  'padding-around-test-blocks': {
+    description: 'Enforce padding around `test` and `it` blocks',
+    configs: paddingConfigs.test,
+  },
+  'padding-around-all': {
+    description:
+      'Enforce padding around all Jest blocks covered by the other `padding-around-*` rules',
+    configs: [].concat(
+      ...Object.keys(paddingConfigs).map((k) => paddingConfigs[k]),
+    ),
+  },
 };
+
+const rules: { [name: string]: Rule.RuleModule } = {};
+
+Object.keys(ruleDefinitions).forEach((name) => {
+  rules[name] = createRule({ name, ...ruleDefinitions[name] });
+});
 
 // The legacy (eslintrc) configs only apply the rules to files matching these
 // globs. Flat configs do not scope by file; see `createFlatConfig` below.
