@@ -33,3 +33,16 @@ jobs:
           cache: yarn
       - run: yarn install --frozen-lockfile
       - run: yarn lint
+
+  # Single stable check for branch protection to require. Fails if any job it
+  # depends on failed, was cancelled, or was skipped, so it cannot be bypassed.
+  ci-passed:
+    name: CI passed
+    needs: [test, lint]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail if any required job did not succeed
+        if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') || contains(needs.*.result, 'skipped')
+        run: exit 1
+      - run: echo "All required jobs succeeded."
