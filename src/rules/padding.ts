@@ -329,9 +329,14 @@ export const createRule = (
     deprecated,
   },
   create(context: Rule.RuleContext) {
+    // `context.sourceCode` was added in ESLint 8.40 and `getSourceCode()` was
+    // removed in ESLint 10. Prefer the property, fall back for older ESLint.
+    const sourceCode: SourceCode =
+      (context as Rule.RuleContext & { sourceCode?: SourceCode }).sourceCode ||
+      context.getSourceCode();
     const paddingContext = {
       ruleContext: context,
-      sourceCode: context.getSourceCode(),
+      sourceCode,
       scopeInfo: createScopeInfo(),
       configs,
     };
