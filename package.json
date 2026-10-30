@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-jest-formatting",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "ESLint rules for formatting jest tests",
   "keywords": [
     "eslint",
@@ -14,20 +14,27 @@
   "author": "Dan Green-Leipciger",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dangreenisrael/eslint-plugin-jest-formatting"
+    "url": "git+https://github.com/dangreenisrael/eslint-plugin-jest-formatting.git"
   },
   "main": "lib/index.js",
-  "module": "src/index.ts",
+  "files": [
+    "lib",
+    "docs",
+    "AGENTS.md",
+    "llms.txt",
+    "CHANGELOG.md"
+  ],
   "scripts": {
     "pretty": "yarn prettier '**/*.*'",
     "lint": "yarn build && yarn link-plugin && yarn pretty --check && yarn eslint --ext .ts,.js .",
     "format": "yarn build && yarn link-plugin && yarn pretty --write && yarn eslint --fix --ext .ts,.js .",
     "build": "tsc",
+    "prepack": "tsc",
     "test": "yarn build && jest",
     "link-plugin": "yarn link && yarn link eslint-plugin-jest-formatting"
   },
   "peerDependencies": {
-    "eslint": ">=0.8.0"
+    "eslint": "^8.0.0 || ^9.0.0 || ^10.0.0"
   },
   "devDependencies": {
     "@types/eslint": "^7.29.0",
@@ -35,7 +42,7 @@
     "@types/node": "^16.11.7",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
-    "eslint": "^8.2.0",
+    "eslint": "^8.57.1",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-import-resolver-typescript": "^2.5.0",
@@ -49,7 +56,7 @@
     "ts-jest": "^27.0.7"
   },
   "engines": {
-    "node": "^12.22.0 || ^14.17.0 || >=16.0.0"
+    "node": ">=22.0.0"
   },
   "license": "MIT"
 }

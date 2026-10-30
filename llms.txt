@@ -1,0 +1,29 @@
+# eslint-plugin-jest-formatting
+
+> ESLint rules that require a blank line before and after Jest blocks: `describe`, `test`/`it`, `beforeAll`, `beforeEach`, `afterAll`, `afterEach`, and groups of `expect` statements. Every rule is autofixable with `eslint --fix`, takes no options, and reports a message that states the problem and the fix. Works with ESLint 8, 9, and 10 in flat config and legacy `.eslintrc`.
+
+Install with `npm install --save-dev eslint-plugin-jest-formatting`. Enable `jestFormatting.configs['flat/recommended']` in `eslint.config.js`, or `"extends": ["plugin:jest-formatting/recommended"]` in `.eslintrc`. The `strict` variants enable `padding-around-all`, which also pads `expect` groups.
+
+## Start here
+
+- [AGENTS.md](https://raw.githubusercontent.com/dangreenisrael/eslint-plugin-jest-formatting/master/AGENTS.md): one-page briefing: purpose, every rule in one line, flat and legacy config snippets, how to build and test
+- [README](https://raw.githubusercontent.com/dangreenisrael/eslint-plugin-jest-formatting/master/README.md): installation and configuration
+
+## Rules
+
+Each page has the same sections in the same order: Rule summary, Why, Incorrect examples, Correct examples, Options, Fixability.
+
+- [padding-around-after-all-blocks](https://raw.githubusercontent.com/dangreenisrael/eslint-plugin-jest-formatting/master/docs/rules/padding-around-after-all-blocks.md): blank line before and after each `afterAll` call
+- [padding-around-after-each-blocks](https://raw.githubusercontent.com/dangreenisrael/eslint-plugin-jest-formatting/master/docs/rules/padding-around-after-each-blocks.md): blank line before and after each `afterEach` call
+- [padding-around-before-all-blocks](https://raw.githubusercontent.com/dangreenisrael/eslint-plugin-jest-formatting/master/docs/rules/padding-around-before-all-blocks.md): blank line before and after each `beforeAll` call
+- [padding-around-before-each-blocks](https://raw.githubusercontent.com/dangreenisrael/eslint-plugin-jest-formatting/master/docs/rules/padding-around-before-each-blocks.md): blank line before and after each `beforeEach` call
+- [padding-around-describe-blocks](https://raw.githubusercontent.com/dangreenisrael/eslint-plugin-jest-formatting/master/docs/rules/padding-around-describe-blocks.md): blank line before and after each `describe`, `fdescribe`, or `xdescribe` block
+- [padding-around-expect-groups](https://raw.githubusercontent.com/dangreenisrael/eslint-plugin-jest-formatting/master/docs/rules/padding-around-expect-groups.md): blank line before and after each run of consecutive `expect` statements, not between them
+- [padding-around-test-blocks](https://raw.githubusercontent.com/dangreenisrael/eslint-plugin-jest-formatting/master/docs/rules/padding-around-test-blocks.md): blank line before and after each `test`, `it`, `fit`, `xit`, or `xtest` block
+- [padding-around-all](https://raw.githubusercontent.com/dangreenisrael/eslint-plugin-jest-formatting/master/docs/rules/padding-around-all.md): all of the above as a single rule; used by the `strict` configs
+
+## Optional
+
+- [CHANGELOG](https://raw.githubusercontent.com/dangreenisrael/eslint-plugin-jest-formatting/master/CHANGELOG.md): release history
+- [Source repository](https://github.com/dangreenisrael/eslint-plugin-jest-formatting): issues and pull requests
+- [npm package](https://www.npmjs.com/package/eslint-plugin-jest-formatting): published releases
