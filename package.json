@@ -17,12 +17,19 @@
     "url": "https://github.com/dangreenisrael/eslint-plugin-jest-formatting"
   },
   "main": "lib/index.js",
-  "module": "src/index.ts",
+  "files": [
+    "lib",
+    "docs",
+    "AGENTS.md",
+    "llms.txt",
+    "CHANGELOG.md"
+  ],
   "scripts": {
     "pretty": "yarn prettier '**/*.*'",
     "lint": "yarn build && yarn link-plugin && yarn pretty --check && yarn eslint --ext .ts,.js .",
     "format": "yarn build && yarn link-plugin && yarn pretty --write && yarn eslint --fix --ext .ts,.js .",
     "build": "tsc",
+    "prepack": "tsc",
     "test": "yarn build && jest",
     "link-plugin": "yarn link && yarn link eslint-plugin-jest-formatting"
   },
