@@ -106,6 +106,16 @@ We also support a "strict" settings which enabled all of the rules for you
 - [padding-around-test-blocks](docs/rules/padding-around-test-blocks.md)
 - [padding-around-all](docs/rules/padding-around-all.md)
 
+## Using with AI coding agents
+
+This plugin is built to be driven by coding agents as well as people:
+
+- **Self-describing messages.** Every report says what is missing, where, and how to fix it, for example: `` Missing blank line before `describe`. Expected at least one blank line between the previous statement and this `describe` call. Fix: insert an empty line above it (autofixable with --fix). `` An agent can act on the message without opening the docs.
+- **Everything is autofixable.** `eslint --fix` resolves every report from this plugin by inserting blank lines. The fixer never removes or reorders code.
+- **Fixed documentation shape.** Each page in [docs/rules](docs/rules) has the same sections in the same order: Rule summary, Why, Incorrect examples, Correct examples, Options, Fixability. Each rule's `meta.docs.url` points at its page.
+- **[AGENTS.md](AGENTS.md)** is a one-page briefing: what the plugin does, every rule in one line, flat and legacy config snippets, and how to build and test.
+- **[llms.txt](llms.txt)** lists the documentation in the [llms.txt](https://llmstxt.org) format for tools that fetch context automatically.
+
 ## Related Projects
 
 ### eslint-plugin-jest
