@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/dangreenisrael/eslint-plugin-jest-formatting/tree/master.svg?style=svg)](https://circleci.com/gh/dangreenisrael/eslint-plugin-jest-formatting/tree/master)
+[![CI](https://github.com/dangreenisrael/eslint-plugin-jest-formatting/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/dangreenisrael/eslint-plugin-jest-formatting/actions/workflows/ci.yml)
 ![npm monthly downloads](https://img.shields.io/npm/dm/eslint-plugin-jest-formatting.svg)
 
 # eslint-plugin-jest-formatting
