@@ -12,7 +12,7 @@ Facts that hold for every rule:
 - Autofixable with `eslint --fix`. The fixer only inserts newlines; it never removes or moves code.
 - Only neighbouring statements in the same block are compared. The first statement in a block needs no blank line before it and the last needs none after it. One blank line is enough.
 - A statement counts as a Jest call when it starts with the identifier (`describe(...)`, `describe.each(...)`, `await expect(...)`), not when the identifier appears later (`return expect(...)`, `const p = describe(...)`).
-- Works with ESLint 8, 9, and 10, in flat config (`eslint.config.js`) and legacy `.eslintrc`.
+- Works with ESLint 8, 9, and 10, in flat config (`eslint.config.js`) and legacy `.eslintrc`. Requires Node 22 or later. There is no Jest version requirement: nothing is imported from Jest.
 
 ## Rules
 

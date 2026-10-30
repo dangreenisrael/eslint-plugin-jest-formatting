@@ -27,7 +27,7 @@
     "link-plugin": "yarn link && yarn link eslint-plugin-jest-formatting"
   },
   "peerDependencies": {
-    "eslint": ">=0.8.0"
+    "eslint": "^8.0.0 || ^9.0.0 || ^10.0.0"
   },
   "devDependencies": {
     "@types/eslint": "^7.29.0",
@@ -49,7 +49,7 @@
     "ts-jest": "^27.0.7"
   },
   "engines": {
-    "node": "^12.22.0 || ^14.17.0 || >=16.0.0"
+    "node": ">=22.0.0"
   },
   "license": "MIT"
 }

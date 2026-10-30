@@ -13,6 +13,8 @@ Like this plugin? [Say thanks with a ⭐️](https://github.com/dangreenisrael/e
 
 ## Installation
 
+Requires Node 22 or later and ESLint 8, 9, or 10. There is no Jest version requirement: the rules match identifiers such as `describe` and `expect` and import nothing from Jest.
+
 You'll first need to install [ESLint](http://eslint.org):
 
 ```
