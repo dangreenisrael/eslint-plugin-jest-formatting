@@ -12,7 +12,7 @@ Facts that hold for every rule:
 - Autofixable with `eslint --fix`. The fixer only inserts newlines; it never removes or moves code.
 - Only neighbouring statements in the same block are compared. The first statement in a block needs no blank line before it and the last needs none after it. One blank line is enough.
 - A statement counts as a Jest call when it starts with the identifier (`describe(...)`, `describe.each(...)`, `await expect(...)`), not when the identifier appears later (`return expect(...)`, `const p = describe(...)`).
-- Works with ESLint 8, 9, and 10, in flat config (`eslint.config.js`) and legacy `.eslintrc`. Requires Node 22 or later. There is no Jest version requirement: nothing is imported from Jest.
+- Works with ESLint 8, 9, and 10. Flat config (`eslint.config.js`) works on ESLint 8.57, 9, and 10. Legacy `.eslintrc` works on ESLint 8 and 9 only (9 needs `ESLINT_USE_FLAT_CONFIG=false`). Requires Node 22 or later. There is no Jest version requirement: nothing is imported from Jest.
 
 ## Rules
 
@@ -41,21 +41,21 @@ export default [
 ];
 ```
 
-The flat configs set no `files`, so they apply wherever ESLint already lints. To limit them to test files, spread the config into an object with your own `files` (name the extensions; a bare `**/*.test.*` would also match Jest snapshot files):
+The flat configs set no `files`, so they apply wherever ESLint already lints. To limit them to test files, spread the config into an object with your own `files` (name the extensions; a bare `**/*.test.*` would also match Jest snapshot files). These patterns cover the same file names as the legacy presets:
 
 ```js
 export default [
   {
     files: [
-      '**/*.{test,spec}.{js,jsx,mjs,cjs,ts,tsx}',
-      '**/__tests__/**/*.{js,jsx,mjs,cjs,ts,tsx}',
+      '**/*{.test,_test,Test,.spec,_spec,Spec}.{js,jsx,mjs,cjs,mts,cts,ts,tsx}',
+      '**/__tests__/**/*.{js,jsx,mjs,cjs,mts,cts,ts,tsx}',
     ],
     ...jestFormatting.configs['flat/recommended'],
   },
 ];
 ```
 
-Legacy config (`.eslintrc`), already scoped to common test-file globs:
+Legacy config (`.eslintrc`, ESLint 8 and 9 only), already scoped to common test-file globs:
 
 ```json
 {

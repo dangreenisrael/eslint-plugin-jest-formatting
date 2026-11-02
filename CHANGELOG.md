@@ -2,7 +2,7 @@
 
 ## v4.0.0 - November 2, 2026
 
-Lint output is read by AI coding agents as often as by people, and agents act on rule messages literally. This release makes the plugin's messages, documentation and package easier for an agent, or a person, to understand and act on. Rule behaviour is unchanged: the same code is reported at the same positions and fixed to the same output as in 3.1.0.
+Lint output is read by AI coding agents as often as by people, and agents act on rule messages literally. This release makes the plugin's messages, documentation and package easier for an agent, or a person, to understand and act on. The same code is reported at the same positions and `eslint --fix` writes the same output as in 3.1.0; the message text is new. Breaking Changes below lists what else can affect an upgrade.
 
 ### Added
 
@@ -16,7 +16,9 @@ Lint output is read by AI coding agents as often as by people, and agents act on
 ### Breaking Changes
 
 - Requires ESLint 8, 9 or 10 and Node 22 or later. ESLint 7 and earlier, and Node 20 and earlier, are no longer supported. npm warns on an `engines` mismatch; Yarn 1 refuses to install unless `--ignore-engines` is passed.
-- The package exports one plugin object (`module.exports = plugin`) with `rules`, `configs` and `meta`, following eslint-plugin-jest. `require(...)`, `import plugin from ...` and `import { rules, configs } from ...` under TypeScript or a bundler keep working. Native ESM named imports (`import { configs } from 'eslint-plugin-jest-formatting'` in a `.mjs` file) no longer resolve; use the default import.
+- The package exports one plugin object (`module.exports = plugin`) with `rules`, `configs` and `meta`, following eslint-plugin-jest. `require(...)`, `import plugin from ...` and `import { rules, configs } from ...` under TypeScript or a bundler keep working. In a native ESM file such as `eslint.config.mjs`, named imports (`import { configs } from 'eslint-plugin-jest-formatting'`) no longer resolve, and a namespace import (`import * as jestFormatting from ...`) no longer has `rules` or `configs`, so ESLint fails with `Could not find "<rule>" in plugin`. Use the default import.
+- Rules now declare an empty `meta.schema`, so ESLint 8 rejects a rule configured with options, such as `["error", {}]`, and stops with `Configuration for rule ... is invalid`. These options never had any effect (ESLint 9 and later already rejected them); configure severity only.
+- Rules now declare `meta.type: 'layout'`, so `eslint --fix-type layout` applies their fixes. It skipped them in 3.1.0.
 
 ### Changed
 
