@@ -161,52 +161,62 @@ ruleTester.run('padding-around-expect-groups', rule, {
       filename: 'src/component.test.js',
       errors: [
         {
-          message: 'Expected blank line before this statement.',
+          messageId: 'missingPaddingBefore',
+          data: { token: 'expect' },
           line: 13,
           column: 3
         },
         {
-          message: 'Expected blank line before this statement.',
+          messageId: 'missingPaddingAfter',
+          data: { token: 'expect' },
           line: 15,
           column: 3
         },
         {
-          message: 'Expected blank line before this statement.',
+          messageId: 'missingPaddingBefore',
+          data: { token: 'expect' },
           line: 16,
           column: 3
         },
         {
-          message: 'Expected blank line before this statement.',
+          messageId: 'missingPaddingBefore',
+          data: { token: 'expect' },
           line: 21,
           column: 3
         },
         {
-          message: 'Expected blank line before this statement.',
+          messageId: 'missingPaddingBefore',
+          data: { token: 'expect' },
           line: 24,
           column: 3
         },
         {
-          message: 'Expected blank line before this statement.',
+          messageId: 'missingPaddingBefore',
+          data: { token: 'expect' },
           line: 32,
           column: 7
         },
         {
-          message: 'Expected blank line before this statement.',
+          messageId: 'missingPaddingBefore',
+          data: { token: 'expect' },
           line: 43,
           column: 3
         },
         {
-          message: 'Expected blank line before this statement.',
+          messageId: 'missingPaddingBefore',
+          data: { token: 'expect' },
           line: 47,
           column: 3
         },
         {
-          message: 'Expected blank line before this statement.',
+          messageId: 'missingPaddingBefore',
+          data: { token: 'expect' },
           line: 51,
           column: 3
         },
         {
-          message: 'Expected blank line before this statement.',
+          messageId: 'missingPaddingBefore',
+          data: { token: 'expect' },
           line: 56,
           column: 3
         },

@@ -84,27 +84,32 @@ ruleTester.run('padding-around-before-all-blocks', rule, {
       filename: 'src/component.test.js',
       errors: [
         {
-          message: 'Expected blank line before this statement.',
+          messageId: 'missingPaddingBefore',
+          data: { token: 'beforeAll' },
           line: 3,
           column: 1
         },
         {
-          message: 'Expected blank line before this statement.',
+          messageId: 'missingPaddingAfter',
+          data: { token: 'beforeAll' },
           line: 5,
           column: 1
         },
         {
-          message: 'Expected blank line before this statement.',
+          messageId: 'missingPaddingBefore',
+          data: { token: 'beforeAll' },
           line: 8,
           column: 3
         },
         {
-          message: 'Expected blank line before this statement.',
+          messageId: 'missingPaddingAfter',
+          data: { token: 'beforeAll' },
           line: 11,
           column: 3
         },
         {
-          message: 'Expected blank line before this statement.',
+          messageId: 'missingPaddingBefore',
+          data: { token: 'beforeAll' },
           line: 18,
           column: 3
         },
