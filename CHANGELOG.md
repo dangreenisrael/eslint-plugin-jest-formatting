@@ -1,6 +1,6 @@
 # Changelog
 
-## v3.2.0 - October 30, 2026
+## v4.0.0 - November 2, 2026
 
 Lint output is read by AI coding agents as often as by people, and agents act on rule messages literally. This release makes the plugin's messages, documentation and package easier for an agent, or a person, to understand and act on. Rule behaviour is unchanged: the same code is reported at the same positions and fixed to the same output as in 3.1.0.
 
@@ -13,10 +13,13 @@ Lint output is read by AI coding agents as often as by people, and agents act on
 - `AGENTS.md` and `llms.txt` for AI coding agents, and a README section on using the plugin with them.
 - The plugin object exposes `meta.name` and `meta.version`.
 
-### Changed
+### Breaking Changes
 
 - Requires ESLint 8, 9 or 10 and Node 22 or later. ESLint 7 and earlier, and Node 20 and earlier, are no longer supported. npm warns on an `engines` mismatch; Yarn 1 refuses to install unless `--ignore-engines` is passed.
 - The package exports one plugin object (`module.exports = plugin`) with `rules`, `configs` and `meta`, following eslint-plugin-jest. `require(...)`, `import plugin from ...` and `import { rules, configs } from ...` under TypeScript or a bundler keep working. Native ESM named imports (`import { configs } from 'eslint-plugin-jest-formatting'` in a `.mjs` file) no longer resolve; use the default import.
+
+### Changed
+
 - The npm package contains only the compiled code, the rule docs, `AGENTS.md`, `llms.txt` and this changelog: 17 files, down from 47. Sources, tests and CI config are no longer shipped. The `module` field, which pointed at an unshipped TypeScript file, is gone.
 
 ### Fixed
