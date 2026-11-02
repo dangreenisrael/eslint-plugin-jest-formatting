@@ -32,8 +32,8 @@ test.each([1, 2])('bar %i', () => {});
 ESLint reports:
 
 ```text
-3:1  error  Missing blank line before `test`. Expected at least one blank line between the previous statement and this `test` call. Fix: insert an empty line above it (autofixable with --fix).  jest-formatting/padding-around-test-blocks
-4:1  error  Missing blank line after `test`. Expected at least one blank line between the `test` call above and this statement. Fix: insert an empty line between them (autofixable with --fix).  jest-formatting/padding-around-test-blocks
+3:1  error  Missing blank line before `test`. Expected at least one blank line between the previous statement and this `test` call. Fix: insert an empty line between the statements, before any comments leading the next statement (autofixable with --fix).  jest-formatting/padding-around-test-blocks
+4:1  error  Missing blank line after `test`. Expected at least one blank line between the `test` call above and this statement. Fix: insert an empty line between the statements, before any comments leading the next statement (autofixable with --fix).  jest-formatting/padding-around-test-blocks
 ```
 
 ```js
@@ -48,8 +48,8 @@ describe('suite', () => {
 ESLint reports:
 
 ```text
-4:3  error  Missing blank line before `it`. Expected at least one blank line between the previous statement and this `it` call. Fix: insert an empty line above it (autofixable with --fix).  jest-formatting/padding-around-test-blocks
-5:3  error  Missing blank line after `it`. Expected at least one blank line between the `it` call above and this statement. Fix: insert an empty line between them (autofixable with --fix).  jest-formatting/padding-around-test-blocks
+4:3  error  Missing blank line before `it`. Expected at least one blank line between the previous statement and this `it` call. Fix: insert an empty line between the statements, before any comments leading the next statement (autofixable with --fix).  jest-formatting/padding-around-test-blocks
+5:3  error  Missing blank line after `it`. Expected at least one blank line between the `it` call above and this statement. Fix: insert an empty line between the statements, before any comments leading the next statement (autofixable with --fix).  jest-formatting/padding-around-test-blocks
 ```
 
 ## Correct examples
@@ -98,5 +98,5 @@ Fixable (`meta.fixable` is `"whitespace"`). `eslint --fix` resolves every report
 
 Both messages are reported on the statement that should have a blank line above it. `{{token}}` is the identifier that matched, for example `xit`.
 
-- `missingPaddingBefore`, reported on the `test` or `it` call: Missing blank line before `{{token}}`. Expected at least one blank line between the previous statement and this `{{token}}` call. Fix: insert an empty line above it (autofixable with --fix).
-- `missingPaddingAfter`, reported on the statement after the `test` or `it` call: Missing blank line after `{{token}}`. Expected at least one blank line between the `{{token}}` call above and this statement. Fix: insert an empty line between them (autofixable with --fix).
+- `missingPaddingBefore`, reported on the `test` or `it` call: Missing blank line before `{{token}}`. Expected at least one blank line between the previous statement and this `{{token}}` call. Fix: insert an empty line between the statements, before any comments leading the next statement (autofixable with --fix).
+- `missingPaddingAfter`, reported on the statement after the `test` or `it` call: Missing blank line after `{{token}}`. Expected at least one blank line between the `{{token}}` call above and this statement. Fix: insert an empty line between the statements, before any comments leading the next statement (autofixable with --fix).

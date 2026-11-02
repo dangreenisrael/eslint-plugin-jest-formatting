@@ -7,7 +7,7 @@ Lint output is read by AI coding agents as often as by people, and agents act on
 ### Added
 
 - Flat config presets for ESLint 9 and 10: `configs['flat/recommended']` and `configs['flat/strict']`. Unlike the legacy presets they set no `files`, so your own config decides which files are linted. The legacy `plugin:jest-formatting/recommended` and `plugin:jest-formatting/strict` configs are unchanged. (#122, #120)
-- Every report carries a `messageId`, `missingPaddingBefore` or `missingPaddingAfter`, and a message that names the matched Jest call, states the expected form, and says how to fix it. For example: Missing blank line before `describe`. Expected at least one blank line between the previous statement and this `describe` call. Fix: insert an empty line above it (autofixable with --fix).
+- Every report carries a `messageId`, `missingPaddingBefore` or `missingPaddingAfter`, and a message that names the matched Jest call, states the expected form, and says how to fix it. For example: Missing blank line before `describe`. Expected at least one blank line between the previous statement and this `describe` call. Fix: insert an empty line between the statements, before any comments leading the next statement (autofixable with --fix).
 - Every rule declares `meta.type`, `meta.docs.description`, `meta.docs.url` and an empty `meta.schema`.
 - Every rule page in `docs/rules` has the same sections: Rule summary, Why, Incorrect examples, Correct examples, Options, Fixability. The "ESLint reports" block under each incorrect example is real output, and a test keeps it that way.
 - `AGENTS.md` and `llms.txt` for AI coding agents, and a README section on using the plugin with them.

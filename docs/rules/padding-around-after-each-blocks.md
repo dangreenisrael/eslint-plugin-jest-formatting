@@ -37,8 +37,8 @@ test('warns once', () => {
 ESLint reports:
 
 ```text
-3:1  error  Missing blank line before `afterEach`. Expected at least one blank line between the previous statement and this `afterEach` call. Fix: insert an empty line above it (autofixable with --fix).  jest-formatting/padding-around-after-each-blocks
-6:1  error  Missing blank line after `afterEach`. Expected at least one blank line between the `afterEach` call above and this statement. Fix: insert an empty line between them (autofixable with --fix).  jest-formatting/padding-around-after-each-blocks
+3:1  error  Missing blank line before `afterEach`. Expected at least one blank line between the previous statement and this `afterEach` call. Fix: insert an empty line between the statements, before any comments leading the next statement (autofixable with --fix).  jest-formatting/padding-around-after-each-blocks
+6:1  error  Missing blank line after `afterEach`. Expected at least one blank line between the `afterEach` call above and this statement. Fix: insert an empty line between the statements, before any comments leading the next statement (autofixable with --fix).  jest-formatting/padding-around-after-each-blocks
 ```
 
 ## Correct examples
@@ -81,5 +81,5 @@ Fixable (`meta.fixable` is `"whitespace"`). `eslint --fix` resolves every report
 
 Both messages are reported on the statement that should have a blank line above it. `{{token}}` is the identifier that matched, for example `afterEach`.
 
-- `missingPaddingBefore`, reported on the `afterEach` call: Missing blank line before `{{token}}`. Expected at least one blank line between the previous statement and this `{{token}}` call. Fix: insert an empty line above it (autofixable with --fix).
-- `missingPaddingAfter`, reported on the statement after the `afterEach` call: Missing blank line after `{{token}}`. Expected at least one blank line between the `{{token}}` call above and this statement. Fix: insert an empty line between them (autofixable with --fix).
+- `missingPaddingBefore`, reported on the `afterEach` call: Missing blank line before `{{token}}`. Expected at least one blank line between the previous statement and this `{{token}}` call. Fix: insert an empty line between the statements, before any comments leading the next statement (autofixable with --fix).
+- `missingPaddingAfter`, reported on the statement after the `afterEach` call: Missing blank line after `{{token}}`. Expected at least one blank line between the `{{token}}` call above and this statement. Fix: insert an empty line between the statements, before any comments leading the next statement (autofixable with --fix).

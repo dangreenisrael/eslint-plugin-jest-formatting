@@ -36,8 +36,8 @@ describe('bar', () => {
 ESLint reports:
 
 ```text
-3:1  error  Missing blank line before `describe`. Expected at least one blank line between the previous statement and this `describe` call. Fix: insert an empty line above it (autofixable with --fix).  jest-formatting/padding-around-describe-blocks
-6:1  error  Missing blank line after `describe`. Expected at least one blank line between the `describe` call above and this statement. Fix: insert an empty line between them (autofixable with --fix).  jest-formatting/padding-around-describe-blocks
+3:1  error  Missing blank line before `describe`. Expected at least one blank line between the previous statement and this `describe` call. Fix: insert an empty line between the statements, before any comments leading the next statement (autofixable with --fix).  jest-formatting/padding-around-describe-blocks
+6:1  error  Missing blank line after `describe`. Expected at least one blank line between the `describe` call above and this statement. Fix: insert an empty line between the statements, before any comments leading the next statement (autofixable with --fix).  jest-formatting/padding-around-describe-blocks
 ```
 
 ## Correct examples
@@ -88,5 +88,5 @@ Fixable (`meta.fixable` is `"whitespace"`). `eslint --fix` resolves every report
 
 Both messages are reported on the statement that should have a blank line above it. `{{token}}` is the identifier that matched, for example `xdescribe`.
 
-- `missingPaddingBefore`, reported on the `describe` call: Missing blank line before `{{token}}`. Expected at least one blank line between the previous statement and this `{{token}}` call. Fix: insert an empty line above it (autofixable with --fix).
-- `missingPaddingAfter`, reported on the statement after the `describe` call: Missing blank line after `{{token}}`. Expected at least one blank line between the `{{token}}` call above and this statement. Fix: insert an empty line between them (autofixable with --fix).
+- `missingPaddingBefore`, reported on the `describe` call: Missing blank line before `{{token}}`. Expected at least one blank line between the previous statement and this `{{token}}` call. Fix: insert an empty line between the statements, before any comments leading the next statement (autofixable with --fix).
+- `missingPaddingAfter`, reported on the statement after the `describe` call: Missing blank line after `{{token}}`. Expected at least one blank line between the `{{token}}` call above and this statement. Fix: insert an empty line between the statements, before any comments leading the next statement (autofixable with --fix).

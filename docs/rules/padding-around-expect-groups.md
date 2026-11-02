@@ -36,9 +36,9 @@ test('thing one', () => {
 ESLint reports:
 
 ```text
-4:3  error  Missing blank line before `expect`. Expected at least one blank line between the previous statement and this `expect` call. Fix: insert an empty line above it (autofixable with --fix).  jest-formatting/padding-around-expect-groups
-6:3  error  Missing blank line after `expect`. Expected at least one blank line between the `expect` call above and this statement. Fix: insert an empty line between them (autofixable with --fix).  jest-formatting/padding-around-expect-groups
-7:3  error  Missing blank line before `expect`. Expected at least one blank line between the previous statement and this `expect` call. Fix: insert an empty line above it (autofixable with --fix).  jest-formatting/padding-around-expect-groups
+4:3  error  Missing blank line before `expect`. Expected at least one blank line between the previous statement and this `expect` call. Fix: insert an empty line between the statements, before any comments leading the next statement (autofixable with --fix).  jest-formatting/padding-around-expect-groups
+6:3  error  Missing blank line after `expect`. Expected at least one blank line between the `expect` call above and this statement. Fix: insert an empty line between the statements, before any comments leading the next statement (autofixable with --fix).  jest-formatting/padding-around-expect-groups
+7:3  error  Missing blank line before `expect`. Expected at least one blank line between the previous statement and this `expect` call. Fix: insert an empty line between the statements, before any comments leading the next statement (autofixable with --fix).  jest-formatting/padding-around-expect-groups
 ```
 
 ## Correct examples
@@ -89,5 +89,5 @@ Fixable (`meta.fixable` is `"whitespace"`). `eslint --fix` resolves every report
 
 Both messages are reported on the statement that should have a blank line above it. `{{token}}` is the identifier that matched, for example `expect`.
 
-- `missingPaddingBefore`, reported on the `expect` call: Missing blank line before `{{token}}`. Expected at least one blank line between the previous statement and this `{{token}}` call. Fix: insert an empty line above it (autofixable with --fix).
-- `missingPaddingAfter`, reported on the statement after the `expect` call: Missing blank line after `{{token}}`. Expected at least one blank line between the `{{token}}` call above and this statement. Fix: insert an empty line between them (autofixable with --fix).
+- `missingPaddingBefore`, reported on the `expect` call: Missing blank line before `{{token}}`. Expected at least one blank line between the previous statement and this `{{token}}` call. Fix: insert an empty line between the statements, before any comments leading the next statement (autofixable with --fix).
+- `missingPaddingAfter`, reported on the statement after the `expect` call: Missing blank line after `{{token}}`. Expected at least one blank line between the `{{token}}` call above and this statement. Fix: insert an empty line between the statements, before any comments leading the next statement (autofixable with --fix).

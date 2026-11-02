@@ -71,8 +71,8 @@ Fixing a tree: `npx eslint --fix .`
 
 Every report uses one of two messages. `{{token}}` is the Jest identifier that matched (`describe`, `xit`, `expect`, ...). Both are reported on the statement that should have a blank line above it.
 
-- `missingPaddingBefore`: Missing blank line before `{{token}}`. Expected at least one blank line between the previous statement and this `{{token}}` call. Fix: insert an empty line above it (autofixable with --fix).
-- `missingPaddingAfter`: Missing blank line after `{{token}}`. Expected at least one blank line between the `{{token}}` call above and this statement. Fix: insert an empty line between them (autofixable with --fix).
+- `missingPaddingBefore`: Missing blank line before `{{token}}`. Expected at least one blank line between the previous statement and this `{{token}}` call. Fix: insert an empty line between the statements, before any comments leading the next statement (autofixable with --fix).
+- `missingPaddingAfter`: Missing blank line after `{{token}}`. Expected at least one blank line between the `{{token}}` call above and this statement. Fix: insert an empty line between the statements, before any comments leading the next statement (autofixable with --fix).
 
 The message contains the fix, so there is no need to open the docs to act on it, and `eslint --fix` resolves all of them. When two rules both cover a gap (for example `beforeEach` followed by `describe` under `recommended`), the same line is reported twice, once per rule; one inserted blank line satisfies both.
 

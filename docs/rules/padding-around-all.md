@@ -44,12 +44,12 @@ describe('users', () => {
 ESLint reports:
 
 ```text
-3:1  error  Missing blank line before `beforeAll`. Expected at least one blank line between the previous statement and this `beforeAll` call. Fix: insert an empty line above it (autofixable with --fix).  jest-formatting/padding-around-all
-4:1  error  Missing blank line after `beforeAll`. Expected at least one blank line between the `beforeAll` call above and this statement. Fix: insert an empty line between them (autofixable with --fix).  jest-formatting/padding-around-all
-5:1  error  Missing blank line before `describe`. Expected at least one blank line between the previous statement and this `describe` call. Fix: insert an empty line above it (autofixable with --fix).  jest-formatting/padding-around-all
-7:3  error  Missing blank line before `test`. Expected at least one blank line between the previous statement and this `test` call. Fix: insert an empty line above it (autofixable with --fix).  jest-formatting/padding-around-all
-9:5  error  Missing blank line before `expect`. Expected at least one blank line between the previous statement and this `expect` call. Fix: insert an empty line above it (autofixable with --fix).  jest-formatting/padding-around-all
-12:3  error  Missing blank line after `test`. Expected at least one blank line between the `test` call above and this statement. Fix: insert an empty line between them (autofixable with --fix).  jest-formatting/padding-around-all
+3:1  error  Missing blank line before `beforeAll`. Expected at least one blank line between the previous statement and this `beforeAll` call. Fix: insert an empty line between the statements, before any comments leading the next statement (autofixable with --fix).  jest-formatting/padding-around-all
+4:1  error  Missing blank line after `beforeAll`. Expected at least one blank line between the `beforeAll` call above and this statement. Fix: insert an empty line between the statements, before any comments leading the next statement (autofixable with --fix).  jest-formatting/padding-around-all
+5:1  error  Missing blank line before `describe`. Expected at least one blank line between the previous statement and this `describe` call. Fix: insert an empty line between the statements, before any comments leading the next statement (autofixable with --fix).  jest-formatting/padding-around-all
+7:3  error  Missing blank line before `test`. Expected at least one blank line between the previous statement and this `test` call. Fix: insert an empty line between the statements, before any comments leading the next statement (autofixable with --fix).  jest-formatting/padding-around-all
+9:5  error  Missing blank line before `expect`. Expected at least one blank line between the previous statement and this `expect` call. Fix: insert an empty line between the statements, before any comments leading the next statement (autofixable with --fix).  jest-formatting/padding-around-all
+12:3  error  Missing blank line after `test`. Expected at least one blank line between the `test` call above and this statement. Fix: insert an empty line between the statements, before any comments leading the next statement (autofixable with --fix).  jest-formatting/padding-around-all
 ```
 
 ## Correct examples
@@ -102,5 +102,5 @@ Fixable (`meta.fixable` is `"whitespace"`). `eslint --fix` resolves every report
 
 Both messages are reported on the statement that should have a blank line above it. `{{token}}` is the identifier that matched, for example `beforeEach`.
 
-- `missingPaddingBefore`, reported on the Jest call: Missing blank line before `{{token}}`. Expected at least one blank line between the previous statement and this `{{token}}` call. Fix: insert an empty line above it (autofixable with --fix).
-- `missingPaddingAfter`, reported on the statement after the Jest call: Missing blank line after `{{token}}`. Expected at least one blank line between the `{{token}}` call above and this statement. Fix: insert an empty line between them (autofixable with --fix).
+- `missingPaddingBefore`, reported on the Jest call: Missing blank line before `{{token}}`. Expected at least one blank line between the previous statement and this `{{token}}` call. Fix: insert an empty line between the statements, before any comments leading the next statement (autofixable with --fix).
+- `missingPaddingAfter`, reported on the statement after the Jest call: Missing blank line after `{{token}}`. Expected at least one blank line between the `{{token}}` call above and this statement. Fix: insert an empty line between the statements, before any comments leading the next statement (autofixable with --fix).

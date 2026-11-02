@@ -127,9 +127,53 @@ describe('shared messages', () => {
     expect(messages[id]).toMatch(
       /^Missing blank line (before|after) `\{\{token\}\}`\./,
     );
-    expect(messages[id]).toContain('Fix:');
+    expect(messages[id]).toContain(
+      'before any comments leading the next statement',
+    );
     expect(messages[id]).toContain('(autofixable with --fix)');
   });
+
+  it.each([
+    [
+      'missingPaddingBefore',
+      'const value = 1;\n// eslint-disable-next-line no-undef\ntest(missing, () => {});',
+      'const value = 1;\n\n// eslint-disable-next-line no-undef\ntest(missing, () => {});',
+    ],
+    [
+      'missingPaddingAfter',
+      "test('example', () => {});\n// eslint-disable-next-line no-undef\nmissing();",
+      "test('example', () => {});\n\n// eslint-disable-next-line no-undef\nmissing();",
+    ],
+  ])(
+    '%s preserves a leading directive comment when fixed',
+    (id, code, output) => {
+      const linter = new Linter({ configType: 'flat' });
+      const config = [
+        {
+          languageOptions: { globals: { test: 'readonly' } },
+          plugins: { 'jest-formatting': plugin },
+          rules: {
+            'no-undef': 'error',
+            'jest-formatting/padding-around-test-blocks': 'error',
+          },
+        },
+      ];
+      const options = { filename: 'example.test.js' };
+      const report = linter.verify(code, config, options);
+
+      expect(report).toHaveLength(1);
+      expect(report[0].messageId).toBe(id);
+      expect(report[0].message).toContain(
+        'before any comments leading the next statement',
+      );
+
+      const fixed = linter.verifyAndFix(code, config, options);
+
+      expect(fixed.output).toBe(output);
+      expect(fixed.messages).toEqual([]);
+      expect(linter.verify(output, config, options)).toEqual([]);
+    },
+  );
 });
 
 describe.each(ruleNames)('%s', (name) => {
