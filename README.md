@@ -42,14 +42,14 @@ export default [
 ];
 ```
 
-`flat/strict` enables every rule via `padding-around-all`. The flat configs do not set `files`, so the rules run on every file ESLint already lints. To scope them to test files, spread the config into your own object (name the extensions explicitly: in flat config a `files` glob opts matching files into linting, and a bare `**/*.test.*` would also match Jest snapshot files):
+`flat/strict` enables every rule via `padding-around-all`. The flat configs do not set `files`, so the rules run on every file ESLint already lints. To scope them to test files, spread the config into your own object (name the extensions explicitly: in flat config a `files` glob opts matching files into linting, and a bare `**/*.test.*` would also match Jest snapshot files). These patterns cover the same file names as the legacy presets:
 
 ```js
 export default [
   {
     files: [
-      '**/*.{test,spec}.{js,jsx,mjs,cjs,ts,tsx}',
-      '**/__tests__/**/*.{js,jsx,mjs,cjs,ts,tsx}',
+      '**/*{.test,_test,Test,.spec,_spec,Spec}.{js,jsx,mjs,cjs,mts,cts,ts,tsx}',
+      '**/__tests__/**/*.{js,jsx,mjs,cjs,mts,cts,ts,tsx}',
     ],
     ...jestFormatting.configs['flat/recommended'],
   },
@@ -59,6 +59,8 @@ export default [
 With CommonJS use `const jestFormatting = require('eslint-plugin-jest-formatting');`.
 
 ### Legacy config (`.eslintrc`)
+
+For ESLint 8 and 9 only: ESLint 10 no longer reads `.eslintrc`, and ESLint 9 needs `ESLINT_USE_FLAT_CONFIG=false` to read it.
 
 Add `jest-formatting` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
 
