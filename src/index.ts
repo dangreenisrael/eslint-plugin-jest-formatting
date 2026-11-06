@@ -13,7 +13,7 @@ import {
 
 // The plugin's name and version are read from package.json so that ESLint
 // (9+) can use them for caching and in the config inspector.
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+
 const packageJson = require('../package.json');
 
 const packageName: string = packageJson.name;
@@ -208,7 +208,7 @@ const strictRules: Linter.RulesRecord = {
 // declared locally rather than imported.
 interface FlatConfig {
   name: string;
-  // eslint-disable-next-line no-use-before-define -- FlatConfig and Plugin reference each other
+
   plugins: { 'jest-formatting': Plugin };
   rules: Linter.RulesRecord;
 }
@@ -217,8 +217,8 @@ interface Plugin {
   meta: { name: string; version: string };
   rules: { [name: string]: Rule.RuleModule };
   configs: {
-    recommended: Linter.Config;
-    strict: Linter.Config;
+    recommended: Linter.LegacyConfig;
+    strict: Linter.LegacyConfig;
     'flat/recommended': FlatConfig;
     'flat/strict': FlatConfig;
   };
@@ -227,13 +227,13 @@ interface Plugin {
 const plugin: Plugin = {
   meta: { name: packageName, version: packageVersion },
   rules,
-  configs: {} as Plugin['configs'],
+  configs: {} as unknown as Plugin['configs'],
 };
 
 // Legacy eslintrc config: `extends: ['plugin:jest-formatting/recommended']`
 const createLegacyConfig = (
   configRules: Linter.RulesRecord,
-): Linter.Config => ({
+): Linter.LegacyConfig => ({
   plugins: ['jest-formatting'],
   overrides: [
     {

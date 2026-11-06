@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased (prerelease notes)
+
+Development dependencies are upgraded to their latest versions. The published plugin's behavior, rules, messages and peer dependency range are unchanged.
+
+### Changed
+
+- Dev tooling: ESLint 10, Jest 30, ts-jest 29, Prettier 3, `@typescript-eslint` 8, `eslint-plugin-jest` 29, `eslint-config-prettier` 10, `eslint-plugin-prettier` 5, `eslint-plugin-import` 2.32, `eslint-import-resolver-typescript` 4, and updated `@types/*`.
+- The repo now lints with a flat `eslint.config.js` (the `.eslintrc` and `.eslintignore` files are gone). `import/order` is off because `eslint-plugin-import` crashes on ESLint 10 when it reports.
+- Rule specs use `languageOptions` instead of `parserOptions`. The legacy `.eslintrc` config tests are skipped on ESLint 10, which cannot load that format.
+- TypeScript stays on 6.x: ts-jest does not yet support the TypeScript 7 compiler API. `tsconfig.json` sets `rootDir`, `types` and `strict: false` for TypeScript 6 defaults.
+
 ## v4.0.0 - November 2, 2026
 
 Lint output is read by AI coding agents as often as by people, and agents act on rule messages literally. This release makes the plugin's messages, documentation and package easier for an agent, or a person, to understand and act on. The same code is reported at the same positions and `eslint --fix` writes the same output as in 3.1.0; the message text is new. Breaking Changes below lists what else can affect an upgrade.

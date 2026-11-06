@@ -10,8 +10,9 @@ const { RuleTester } = require('eslint');
 const rule = require('../../../lib').rules['padding-around-test-blocks'];
 
 const ruleTester = new RuleTester({
-  parserOptions: {
+  languageOptions: {
     ecmaVersion: 6,
+    sourceType: 'script',
   },
 });
 

@@ -1,12 +1,15 @@
 {
   "compilerOptions": {
     "module": "commonjs",
+    "strict": false,
     "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,
     "target": "es2015",
     "typeRoots": ["node_modules/@types"],
-    "outDir": "lib"
+    "outDir": "lib",
+    "rootDir": "src",
+    "types": ["node", "jest"]
   },
   "exclude": ["node_modules/**/*", "**/*.spec.ts"]
 }
