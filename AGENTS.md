@@ -84,7 +84,7 @@ Layout:
 - `src/rules/padding.ts`: the single rule factory `createRule`, the shared `messages`, and the statement-matching logic. All eight rules are instances of it.
 - `src/ast-utils.ts`: token and blank-line helpers.
 - `tests/lib/rules/*.spec.js`: one `RuleTester` spec per rule. `tests/lib/ast-utils.spec.ts`: helper tests.
-- `tests/dogfood.spec.js` and `tests/catfood.js`: linted by `yarn lint` through the repo's own `.eslintrc`, which extends `plugin:jest-formatting/recommended`. The spec must pass clean; `catfood.js` has bad padding on purpose and must be ignored, because it does not match the legacy config's test-file globs.
+- `tests/dogfood.spec.js` and `tests/catfood.js`: linted by `yarn lint` through the repo's own `eslint.config.js`, which applies `flat/recommended` to test files. The spec must pass clean; `catfood.js` has bad padding on purpose and is listed in the config's `ignores`.
 - `docs/rules/*.md`: one page per rule in the fixed section order above. Each rule's `meta.docs.url` points at its page on the `master` branch.
 - `lib/`: `tsc` output, git-ignored, and the package `main`. Build before loading the plugin.
 

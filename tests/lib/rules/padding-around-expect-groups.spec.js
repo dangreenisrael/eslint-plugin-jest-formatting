@@ -10,8 +10,9 @@ const { RuleTester } = require('eslint');
 const rule = require('../../../lib').rules['padding-around-expect-groups'];
 
 const ruleTester = new RuleTester({
-  parserOptions: {
+  languageOptions: {
     ecmaVersion: 2017,
+    sourceType: 'script',
   },
 });
 

@@ -10,7 +10,7 @@
 
 import { AST, Rule, SourceCode } from 'eslint';
 // This is because we are using @types/estree that are brought in with eslint
-// eslint-disable-next-line import/no-extraneous-dependencies
+
 import { Node } from 'estree';
 import * as astUtils from '../ast-utils';
 
@@ -398,7 +398,7 @@ export const createRule = ({
     // removed in ESLint 10. Prefer the property, fall back for older ESLint.
     const sourceCode: SourceCode =
       (context as Rule.RuleContext & { sourceCode?: SourceCode }).sourceCode ||
-      context.getSourceCode();
+      (context as unknown as { getSourceCode(): SourceCode }).getSourceCode();
     const paddingContext = {
       ruleContext: context,
       sourceCode,

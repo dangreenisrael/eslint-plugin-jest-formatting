@@ -4,8 +4,6 @@
  * `src/index.ts`, `docs/rules`, README.md, AGENTS.md and llms.txt in step.
  */
 
-/* eslint-disable @typescript-eslint/no-var-requires -- CommonJS test file */
-
 const fs = require('fs');
 const path = require('path');
 const { Linter } = require('eslint');

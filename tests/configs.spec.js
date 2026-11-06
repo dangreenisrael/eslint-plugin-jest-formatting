@@ -7,13 +7,11 @@
  * legacy test-file globs. `tests/dogfood.spec.js` is correctly formatted.
  */
 
-/* eslint-disable @typescript-eslint/no-var-requires -- CommonJS test file */
-
 const fs = require('fs');
 const path = require('path');
 const eslint = require('eslint');
 // Resolved through `moduleNameMapper` in jest.config.js; see the note there.
-// eslint-disable-next-line import/no-unresolved -- resolver predates package exports
+
 const unsafe = require('eslint/use-at-your-own-risk');
 const plugin = require('../lib');
 
